@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<taglib>
+		<name>webname</name>
+		<value>倚天屠龙记</value>
+	</taglib>
+	<taglib>
+		<name>pagesize</name>
+		<value>23</value>
+	</taglib>
+</root>

@@ -13,7 +13,7 @@ class Templates {
 			exit ( 'ERROR：模版目录或编译目录或缓存目录不存在，请手工添加！' );
 		}
 		
-		$sxe = simplexml_load_file ( 'config/profile.xml' );
+		$sxe = simplexml_load_file ( ROOT_PATH . '/config/profile.xml' );
 		$taglib = $sxe->xpath ( '/root/taglib' );
 		
 		foreach ( $taglib as $tag ) {
@@ -65,7 +65,7 @@ class Templates {
 		
 		if (! file_exists ( $parfile ) || filemtime ( $parfile ) < filemtime ( $tplfile )) {
 			// 引入模版解析类
-			require ROOT_PATH . '/include/Parser.class.php';
+			require_once ROOT_PATH . '/include/Parser.class.php';
 			
 			// 编译文件
 			$parser = new Praser ( $tplfile );
@@ -82,6 +82,33 @@ class Templates {
 			// 载入缓存的静态页面
 			include $cachefile;
 		}
+	}
+	
+	/**
+	 * 解析模块模版而不需要生成缓存文件
+	 * 
+	 * @param unknown $tplname        	
+	 */
+	public function create($tplname) {
+		$tplfile = TPL_DIR . $tplname;
+		// 判断模版是否存在
+		if (! file_exists ( $tplfile )) {
+			exit ( 'ERROR：模版文件不存在！' );
+		}
+		
+		// 生成编译文件
+		$parfile = TPL_C_DIR . md5 ( $tplname ) . $tplname . '.php';
+		
+		if (! file_exists ( $parfile ) || filemtime ( $parfile ) < filemtime ( $tplfile )) {
+			// 引入模版解析类
+			require_once ROOT_PATH . '/include/Parser.class.php';
+			
+			// 编译文件
+			$parser = new Praser ( $tplfile );
+			$parser->compile ( $parfile );
+		}
+		
+		include $parfile;
 	}
 }
 

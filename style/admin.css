@@ -22,3 +22,22 @@ ul{list-style:none;}
 #sidebar dl dd a{color:#333;text-decoration:none;}
 #sidebar dl dd a:hover{text-decoration:underline;}
 /*sidebar end*/
+
+/*main start*/
+#main{background:#fff;}
+#main div.map{padding:15px;color:#333;}
+#main div.map strong{color:green;}
+#main table{width:95%;margin:0 auto;text-align:center;}
+#main table.left{text-align:left;}
+#main table tr:hover{background:#ffc;}
+#main table th,td{height:30px;line-height:30px;color:#333;}
+#main table th{background:#eef37e;border-bottom:1px solid #d5dfe8;font-weight:normal;}
+#main table td{border-bottom:1px solid #eee;}
+#main a{color:#3b6ea5;text-decoration:none;}
+#main a:hover{text-decoration:underline;}
+#main p.center{text-align:center;padding:20px;}
+#main form input.text{width:220px;height:19px;border:1px solid #eee;}
+#main form select{width:100px;height:19px;}
+#main form input.submit{cursor:pointer;margin:0 0 0 47px;background:#fee;width:90px;height:26px;border-radius:4px;}
+#main form input.submit:hover{background:#fcc;transition:all 0.8s ease;}
+/*main end*/

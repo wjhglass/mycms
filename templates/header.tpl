@@ -5,9 +5,8 @@
 </div>
 <!--top end-->
 
-{$title}
 <!--header start-->
-<div class="header">
+<div class="header magictime openUpRightRetourn">
 	<h1><a href="javascript:;">倚天一出，谁与争锋</a></h1>
 	<div class="adver"><a href="javascript:;"><img width="690" height="80" alt="广告" src="images/adver.png" /></a></div>
 </div>

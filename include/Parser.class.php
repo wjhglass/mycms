@@ -29,7 +29,7 @@ class Praser {
 		$pattenElse = '/\{else\}/';
 		if (preg_match ( $pattenIf, $this->tpl )) {
 			if (preg_match ( $pattenEndIf, $this->tpl )) {
-				$this->tpl = preg_replace ( $pattenIf, "<?php if (\$this->vars['$1']) {?>", $this->tpl );
+				$this->tpl = preg_replace ( $pattenIf, "<?php if (isset(\$this->vars['$1']) && \$this->vars['$1'] == true) {?>", $this->tpl );
 				$this->tpl = preg_replace ( $pattenEndIf, "<?php } ?>", $this->tpl );
 				if (preg_match ( $pattenElse, $this->tpl )) {
 					$this->tpl = preg_replace ( $pattenElse, "<?php } else { ?>", $this->tpl );
@@ -46,13 +46,13 @@ class Praser {
 	private function parForeach() {
 		$pattenForeach = '/\{foreach\s+\$([\w]+)\(([\w]+),([\w]+)\)\}/';
 		$pattenEndForeach = '/\{\/foreach\}/';
-		$pattenVar = '/\{@([\w]+)\}/';
+		$pattenVar = '/\{@([\w]+)([\w\-\>]*)\}/';
 		if (preg_match ( $pattenForeach, $this->tpl )) {
 			if (preg_match ( $pattenEndForeach, $this->tpl )) {
 				$this->tpl = preg_replace ( $pattenForeach, "<?php foreach (\$this->vars['$1'] as \$$2=>\$$3) { ?>", $this->tpl );
 				$this->tpl = preg_replace ( $pattenEndForeach, "<?php } ?>", $this->tpl );
 				if (preg_match ( $pattenVar, $this->tpl )) {
-					$this->tpl = preg_replace ( $pattenVar, "<?php echo \$$1?>", $this->tpl );
+					$this->tpl = preg_replace ( $pattenVar, "<?php echo \$$1$2?>", $this->tpl );
 				}
 			} else {
 				exit ( 'ERROR：foreach语句必须有结尾标签！' );

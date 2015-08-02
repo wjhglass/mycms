@@ -8,7 +8,7 @@
 		<frame src="top.php" noresize="true" />
 		<frameset cols="150px,*">
 			<frame src="sidebar.php" name="sidebar" noresize="true" />
-			<frame src="main.php" />
+			<frame src="main.php" name="main" />
 		</frameset>
 	</frameset>
 </html>

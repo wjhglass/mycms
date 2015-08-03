@@ -22,7 +22,7 @@
 					<td>{@value->last_ip}</td>
 					<td>{@value->last_time}</td>
 					<td>{@value->reg_time}</td>
-					<td><a href="manage.php?action=edit">编辑</a> | <a href="manage.php?action=delete">删除</a></td>
+					<td><a href="manage.php?action=edit&id={@value->id}">编辑</a> | <a href="manage.php?action=delete&id={@value->id}" onclick="return confirm('您真的要删除吗？');">删除</a></td>
 				</tr>
 			{/foreach}
 		</table>
@@ -46,8 +46,10 @@
 		{/if}
 		{if $edit}
 			<form method="post">
+				<input type="hidden" value="{$id}" name="id" />
+				<input type="hidden" value="{$level}" id="level" />
 				<table cellspacing="0" class="left">
-					<tr><td>用户名：<input type="text" name="admin_user" class="text" /></td></tr>
+					<tr><td>用户名：<input type="text" name="admin_user" class="text" value="{$admin_user}" readonly="readonly" /></td></tr>
 					<tr><td>密　码：<input type="password" name="admin_password" class="text" /></td></tr>
 					<tr><td>等　级：
 						<select name="level">
@@ -59,10 +61,6 @@
 				</table>
 			</form>
 		{/if}
-		{if $delete}
-			删除
-		{/if}
-	
-	
+		<script type="text/javascript" src="../js/admin.manage.option.js"></script>
 </body>
 </html>

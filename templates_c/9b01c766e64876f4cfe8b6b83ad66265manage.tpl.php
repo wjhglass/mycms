@@ -22,7 +22,7 @@
 					<td><?php echo $value->last_ip?></td>
 					<td><?php echo $value->last_time?></td>
 					<td><?php echo $value->reg_time?></td>
-					<td><a href="manage.php?action=edit">编辑</a> | <a href="manage.php?action=delete">删除</a></td>
+					<td><a href="manage.php?action=edit&id=<?php echo $value->id?>">编辑</a> | <a href="manage.php?action=delete&id=<?php echo $value->id?>" onclick="return confirm('您真的要删除吗？');">删除</a></td>
 				</tr>
 			<?php } ?>
 		</table>
@@ -46,8 +46,10 @@
 		<?php } ?>
 		<?php if (isset($this->vars['edit']) && $this->vars['edit'] == true) {?>
 			<form method="post">
+				<input type="hidden" value="<?php echo $this->vars['id'];?>" name="id" />
+				<input type="hidden" value="<?php echo $this->vars['level'];?>" id="level" />
 				<table cellspacing="0" class="left">
-					<tr><td>用户名：<input type="text" name="admin_user" class="text" /></td></tr>
+					<tr><td>用户名：<input type="text" name="admin_user" class="text" value="<?php echo $this->vars['admin_user'];?>" readonly="readonly" /></td></tr>
 					<tr><td>密　码：<input type="password" name="admin_password" class="text" /></td></tr>
 					<tr><td>等　级：
 						<select name="level">
@@ -59,10 +61,6 @@
 				</table>
 			</form>
 		<?php } ?>
-		<?php if (isset($this->vars['delete']) && $this->vars['delete'] == true) {?>
-			删除
-		<?php } ?>
-	
-	
+		<script type="text/javascript" src="../js/admin.manage.option.js"></script>
 </body>
 </html>

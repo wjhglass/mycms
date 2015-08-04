@@ -36,6 +36,10 @@
 					<tr><td>密　码：<input type="password" name="admin_password" class="text" /></td></tr>
 					<tr><td>等　级：
 						<select name="level">
+							<option value="1">苦逼业务员</option>
+							<option value="2">潜水员</option>
+							<option value="3">发帖专业户</option>
+							<option value="4">评论家</option>
 							<option value="5">普通管理员</option>
 							<option value="6">超级管理员</option>
 						</select>
@@ -53,6 +57,10 @@
 					<tr><td>密　码：<input type="password" name="admin_password" class="text" /></td></tr>
 					<tr><td>等　级：
 						<select name="level">
+							<option value="1">苦逼业务员</option>
+							<option value="2">潜水员</option>
+							<option value="3">发帖专业户</option>
+							<option value="4">评论家</option>
 							<option value="5">普通管理员</option>
 							<option value="6">超级管理员</option>
 						</select>

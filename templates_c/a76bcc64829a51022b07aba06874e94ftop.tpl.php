@@ -9,8 +9,8 @@
 <body id="top">
 	<h1 class="magictime openDownRightRetourn">LOGO</h1>
 	<ul>
-		<li><a href="sidebar.php" target="sidebar" id="Nav1" onclick="adminTopNav(1);" class="selected">首页</a></li>
-		<li><a href="sidebarn.php" target="sidebar" id="Nav2" onclick="adminTopNav(2);">内容</a></li>
+		<li><a href="../templates/sidebar.html" target="sidebar" id="Nav1" onclick="adminTopNav(1);" class="selected">首页</a></li>
+		<li><a href="../templates/sidebarn.html" target="sidebar" id="Nav2" onclick="adminTopNav(2);">内容</a></li>
 		<li><a href="javascript:;" id="Nav3" onclick="adminTopNav(3);">会员</a></li>
 		<li><a href="javascript:;" id="Nav4" onclick="adminTopNav(4);">系统</a></li>
 	</ul>

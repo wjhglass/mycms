@@ -41,6 +41,7 @@ class Templates {
 	 * 显示模版文件中的内容
 	 */
 	public function display($tplname) {
+		$tmp = $this;
 		$tplfile = TPL_DIR . $tplname;
 		// 判断模版是否存在
 		if (! file_exists ( $tplfile )) {
@@ -99,7 +100,7 @@ class Templates {
 		// 生成编译文件
 		$parfile = TPL_C_DIR . md5 ( $tplname ) . $tplname . '.php';
 		
-		if (! file_exists ( $parfile ) || filemtime ( $parfile ) < filemtime ( $tplfile )) {
+		if (! file_exists ( $parfile ) || (filemtime ( $parfile ) < filemtime ( $tplfile ))) {
 			// 引入模版解析类
 			require_once ROOT_PATH . '/include/Parser.class.php';
 			

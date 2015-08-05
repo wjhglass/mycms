@@ -8,7 +8,7 @@
 </head>
 <body>
 	<!--导入头部文件-->
-	{include file='header.inc.php'}
+	{include file='header.tpl'}
 	<!--user start-->
 	<div class="user">
 		<h2>会员信息</h2>
@@ -232,6 +232,6 @@
 	<!--newslist end-->
 	
 	<!--导入尾部文件-->
-	{include file='footer.inc.php'}
+	{include file='footer.tpl'}
 </body>
 </html>

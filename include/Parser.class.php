@@ -2,12 +2,10 @@
 class Praser {
 	// 字段，保存模板内容
 	private $tpl;
-	
 	public function __construct($tplfile) {
 		if (! $this->tpl = file_get_contents ( $tplfile )) {
 			exit ( 'ERROR：模板文件读取错误！' );
 		}
-		
 	}
 	
 	/**
@@ -65,11 +63,13 @@ class Praser {
 	 */
 	private function parInclude() {
 		$patten = '/\{include\s+file=(\"|\')([\w\.\-\/]+)(\"|\')\}/';
-		if (preg_match ( $patten, $this->tpl, $file )) {
-			if (! file_exists ( $file [2] ) || empty ( $file )) {
-				exit ( 'ERROR：包含文件出错！' );
+		if (preg_match_all ( $patten, $this->tpl, $file )) {
+			foreach ( $file [2] as $value ) {
+				if (! file_exists ( 'templates/' . $value )) {
+					exit ( 'ERROR：包含文件出错！' );
+				}
+				$this->tpl = preg_replace ( $patten, "<?php \$tmp->create('$2')?>", $this->tpl );
 			}
-			$this->tpl = preg_replace ( $patten, "<?php include '$2';?>", $this->tpl );
 		}
 	}
 	

@@ -6,7 +6,7 @@
  */
 class ManageAction extends Action {
 	public function __construct(&$tmp) {
-		parent::__construct($tmp, new Manage());
+		parent::__construct($tmp, new ManageModel());
 		$this->action();
 		$this->tmp->display('manage.tpl');
 	}

@@ -5,12 +5,16 @@ define ( 'ROOT_PATH', dirname ( __FILE__ ) );
 
 // 引入配置信息
 require ROOT_PATH . '/config/profile.inc.php';
-// 引入库
-require ROOT_PATH . '/include/Templates.class.php';
-// 引入数据库操作文件
-require ROOT_PATH . '/include/DB.class.php';
-// 引入工具文件
-require ROOT_PATH . '/include/Tool.class.php';
+// 自动加载类
+function __autoload($className) {
+	if (substr ( $className, - 6 ) == 'Action') {
+		require ROOT_PATH . '/action/' . $className . '.class.php';
+	} elseif (substr ( $className, - 5 ) == 'Model') {
+		require ROOT_PATH . '/model/' . $className . '.class.php';
+	} else {
+		require ROOT_PATH . '/include/' . $className . '.class.php';
+	}
+}
 // 引入缓存的配置文件
 require '/cache.inc.php';
 

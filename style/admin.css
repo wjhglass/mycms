@@ -40,6 +40,7 @@ ul,ol{list-style:none;}
 #main form select{width:100px;height:19px;}
 #main form input.submit{cursor:pointer;margin:0 0 0 47px;background:#fee;width:90px;height:26px;border-radius:4px;}
 #main form input.submit:hover{background:#fcc;transition:all 0.8s ease;}
+#main form textarea{font-size:14px;width:216px;height:100px;background:#fff;border:1px solid #ccc;margin:0 0 0 60px;}
 #main ol{padding:10px 0 0 45px;height:30px;}
 #main ol li{float:left;padding:0 10px 0 0;}
 #main ol li a{padding:5px;display:block;}

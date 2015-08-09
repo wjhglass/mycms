@@ -44,6 +44,24 @@ class Model {
 	}
 	
 	/**
+	 * 获取总记录数
+	 * @author 吴金华
+	 * @version 1.0
+	 * @since 2015-8-9
+	 * @param unknown $sql
+	 * @return unknown
+	 */
+	protected function getCount($sql) {
+		$db = DB::getDB();
+		
+		$result = $db->query($sql);
+		$total = $result->fetch_row()[0];
+		DB::unDB($result, $db);
+	
+		return $total;
+	}
+	
+	/**
 	 * 查找多条数据
 	 * @author 吴金华
 	 * @version 1.0

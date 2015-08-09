@@ -9,6 +9,7 @@ class ManageModel extends Model {
 	private $admin_user;// 管理员用户名
 	private $admin_password; // 管理员密码
 	private $level;// 管理员等级
+	private $limit; // limit语句
 	
 	public function __set($name, $val) {
 		$this->$name = $val;
@@ -91,6 +92,22 @@ sql;
 	}
 	
 	/**
+	 * 获取管理员的总记录数
+	 * @author 吴金华
+	 * @version 1.0
+	 * @since 2015-8-9
+	 */
+	public function getManageCount() {
+		$sql = <<<sql
+SELECT
+	COUNT(0)
+FROM
+	mycms_manage
+sql;
+		return parent::getCount($sql);
+	} 
+	
+	/**
 	 * 查询所有管理员
 	 *
 	 * @author 吴金华
@@ -112,7 +129,7 @@ FROM
 	mycms_manage a
 LEFT JOIN mycms_level b ON a.`level` = b.`level`
 ORDER BY a.reg_time DESC
-LIMIT 0,10
+$this->limit
 sql;
 		return parent::all($sql);
 	}

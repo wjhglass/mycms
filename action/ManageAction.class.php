@@ -38,9 +38,13 @@ class ManageAction extends Action {
 	 * @since 2015-8-4
 	 */
 	private function display() {
+		$page = new Page($this->model->getManageCount(), PAGE_SIZE);
+		$this->model->limit = $page->limit;
+		
 		$this->tmp->assign ( 'display', true );
 		$this->tmp->assign ( 'title', '管理员列表' );
 		$this->tmp->assign ( 'manages', $this->model->listAll () );
+		$this->tmp->assign ( 'page', $page->display() );
 	}
 	
 	/**

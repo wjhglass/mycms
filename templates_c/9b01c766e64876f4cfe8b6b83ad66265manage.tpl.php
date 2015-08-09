@@ -36,6 +36,7 @@
 			<?php } ?>
 		</table>
 		<p class="center">[<a href="manage.php?action=add">新增管理员</a>]</p>
+		<div id="page"><?php echo $this->vars['page'];?></div>
 		<?php } ?>
 	</div>
 		<?php if (isset($this->vars['add']) && $this->vars['add'] == true) {?>

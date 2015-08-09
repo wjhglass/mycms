@@ -47,3 +47,11 @@ ul,ol{list-style:none;}
 #main ol li a:hover{background:#eee;}
 #main ol li a.selected{background:#3b6ea5;color:#fff;}
 /*main end*/
+
+/*page start*/
+#page{text-align:center;padding:0 10px 10px 10px;}
+#page a{border:1px solid #666;padding:2px 5px;}
+#page a:hover{color:#fff;border:1px solid #000;background:#000;text-decoration:none;}
+#page span{border:1px solid #eee;padding:2px 5px;}
+#page span.me{color:#fff;border:1px solid #000;background:#000;}
+/*page end*/

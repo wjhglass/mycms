@@ -14,6 +14,7 @@ class LevelAction extends Action {
 	private function action() {
 		switch ($_GET ['action']) {
 			case 'display' :
+				Validate::checkSession();
 				$this->display();
 				break;
 			case 'add' :
@@ -23,6 +24,7 @@ class LevelAction extends Action {
 				$this->edit();
 				break;
 			case 'delete' :
+				Validate::checkSession();
 				$this->delete();
 				return;
 			default :

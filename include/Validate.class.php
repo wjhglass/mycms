@@ -29,13 +29,15 @@ class Validate {
 	 * @param unknown $length
 	 *        	要检查的长度
 	 * @param unknown $flag
-	 *        	表示是大于某一长度，还是小于某一长度，1表示大于，0表示小于
+	 *        	表示是大于某一长度，还是小于某一长度，1表示大于，0表示小于，2表示等于
 	 */
 	public static function checkLength($data, $length, $flag = 0) {
 		if ($flag == 0) {
 			return mb_strlen ( trim ( $data ), 'UTF-8' ) > $length;
-		} else {
+		} else if ($flag == 1) {
 			return mb_strlen ( trim ( $data ), 'UTF-8' ) < $length;
+		} else if ($flag == 2) {
+			return mb_strlen ( trim ( $data ), 'UTF-8' ) == $length;
 		}
 		return false;
 	}
@@ -53,5 +55,17 @@ class Validate {
 	 */
 	public static function checkEquals($data, $compareData) {
 		return trim ( $data ) == trim ( $compareData );
+	}
+	
+	/**
+	 * 验证session是否存在
+	 * @author 吴金华
+	 * @version 1.0
+	 * @since 2015-8-9
+	 */
+	public static function checkSession() {
+		if (!isset($_SESSION['admin'])) {
+			Tool::alertBack('非法登录');
+		}
 	}
 }

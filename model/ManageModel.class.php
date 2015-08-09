@@ -20,6 +20,27 @@ class ManageModel extends Model {
 	}
 	
 	/**
+	 * 验证用户名和密码
+	 * @author 吴金华
+	 * @version 1.0
+	 * @since 2015-8-9
+	 */
+	public function validate() {
+		$sql = <<<sql
+SELECT
+	a.admin_user,
+	b.level_name
+FROM
+	mycms_manage a
+LEFT JOIN mycms_level b
+ON a.`level`=b.`level`
+WHERE a.admin_user='$this->admin_user'
+	  AND a.admin_password='$this->admin_password' LIMIT 1
+sql;
+		return parent::one($sql);
+	}
+	
+	/**
 	 * 加载一个管理员
 	 * @author 吴金华
 	 * @version 1.0

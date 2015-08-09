@@ -26,7 +26,7 @@ window.onload = function() {
 function checkAdd() {
 	var form = document.add;
 	if (form.admin_user.value == "" || form.admin_user.value.length < 2) {
-		alert("用户名不对为空并不得小于2位");
+		alert("用户名不得为空并不得小于2位");
 		form.admin_user.focus();
 		return false;
 	}

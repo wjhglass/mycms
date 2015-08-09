@@ -17,8 +17,13 @@ class Tool {
 	 *        	即将要跳转的url
 	 */
 	public static function alertLocation($_info, $_url) {
-		echo "<script type='text/javascript'>alert('$_info');location.href='$_url';</script>";
-		exit ();
+		if (empty($_info)) {
+			header('Location:'.$_url);
+			exit ();
+		} else {
+			echo "<script type='text/javascript'>alert('$_info');location.href='$_url';</script>";
+			exit ();
+		}
 	}
 	
 	/**
@@ -33,6 +38,12 @@ class Tool {
 	public static function alertBack($_info) {
 		echo "<script type='text/javascript'>alert('$_info');history.back();</script>";
 		exit ();
+	}
+	
+	public static function unSession() {
+		if (session_start()) {
+			session_destroy();
+		}
 	}
 	
 	/**

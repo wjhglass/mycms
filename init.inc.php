@@ -1,5 +1,8 @@
 <?php
 header ( "Content-type: text/html; charset=utf-8" );
+// 开启session
+session_start();
+
 // 定义各类文件的根目录
 define ( 'ROOT_PATH', dirname ( __FILE__ ) );
 

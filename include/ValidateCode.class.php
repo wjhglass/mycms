@@ -7,7 +7,7 @@
 class ValidateCode {
 	private $charset = 'abcdefghkmnpqrstuvwxwzABCDEFGHKLMNPRSTUVWXWZ23456789'; // 随机因子
 	private $code; // 验证码
-	private $codelen = 5; // 验证码长度
+	private $codelen = CODE_LENGTH; // 验证码长度
 	private $width = 130; // 背景宽度
 	private $height = 50; // 背景高度
 	private $img; // 图形资源句柄
@@ -58,7 +58,7 @@ class ValidateCode {
 			imageline($this->img, 0, mt_rand ( 0, $this->height ), $this->width, mt_rand ( 0, $this->height ), $color);
 		}
 		
-		for ($i = 0; $i < 100; $i++) {
+		for ($i = 0; $i < 50; $i++) {
 			$color = imagecolorallocate ( $this->img, mt_rand ( 200, 255 ), mt_rand ( 200, 255 ), mt_rand ( 200, 255 ) );
 			imagestring($this->img, mt_rand(1, 5), mt_rand(0, $this->width), mt_rand(0, $this->height), '.', $color);
 		}
@@ -100,7 +100,7 @@ class ValidateCode {
 	 * @return string
 	 */
 	public function getCode() {
-		return $this->code;
+		return strtolower($this->code);
 	}
 	
 	/**

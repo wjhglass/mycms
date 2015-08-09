@@ -70,6 +70,27 @@ sql;
 	}
 	
 	/**
+	 * 查询所有的等级
+	 * @author 吴金华
+	 * @version 1.0
+	 * @since 2015-8-9
+	 */
+	public function listAllLevel() {
+		$sql = <<<sql
+SELECT
+	id,
+	LEVEL,
+	level_name,
+	level_info
+FROM
+	mycms_level
+ORDER BY
+	LEVEL DESC
+sql;
+		return parent::all($sql);
+	}
+	
+	/**
 	 * 添加管理员
 	 * @author 吴金华
 	 * @version 1.0

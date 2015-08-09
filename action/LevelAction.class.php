@@ -51,8 +51,34 @@ class LevelAction extends Action {
 	 */
 	private function add() {
 		if (isset ( $_POST ['send'] )) {
+			if (Validate::checkNull($_POST ['level'])) {
+				Tool::alertBack('等级代码不得为空');
+			}
+			if (!is_numeric($_POST ['level'])) {
+				Tool::alertBack('等级代码必须为数字');
+			}
+			
+			if (Validate::checkNull($_POST ['level_name'])) {
+				Tool::alertBack('等级名称不得为空');
+			}
+			if (Validate::checkLength($_POST ['level_name'], 20)) {
+				Tool::alertBack('等级名称不得大于20位');
+			}
+			if (Validate::checkLength($_POST ['level_name'], 2, 1)) {
+				Tool::alertBack('等级名称不得小于2位');
+			}
+			
+			if (Validate::checkLength($_POST ['level_info'], 200)) {
+				Tool::alertBack('等级描述不得大于200位');
+			}
 			$this->model->level = $_POST ['level'];
+			if ($this->model->loadByLevel() != null) {
+				Tool::alertBack('此等级代码已经被使用，请重新想一个哦！');
+			}
 			$this->model->level_name = $_POST ['level_name'];
+			if ($this->model->loadByLevelName() != null) {
+				Tool::alertBack('此等级名称已经被使用，请重新想一个哦！');
+			}
 			$this->model->level_info = $_POST ['level_info'];
 			$affected_rows = $this->model->add ();
 			if ($affected_rows) {
@@ -73,6 +99,20 @@ class LevelAction extends Action {
 	 */
 	private function edit() {
 		if (isset($_POST['send'])) {
+			if (Validate::checkNull($_POST ['level_name'])) {
+				Tool::alertBack('等级名称不得为空');
+			}
+			if (Validate::checkLength($_POST ['level_name'], 20)) {
+				Tool::alertBack('等级名称不得大于20位');
+			}
+			if (Validate::checkLength($_POST ['level_name'], 2, 1)) {
+				Tool::alertBack('等级名称不得小于2位');
+			}
+				
+			if (Validate::checkLength($_POST ['level_info'], 200)) {
+				Tool::alertBack('等级描述不得大于200位');
+			}
+			
 			$this->model->id = $_POST['id'];
 			$this->model->level_name = $_POST['level_name'];
 			$this->model->level_info = $_POST['level_info'];
@@ -99,6 +139,14 @@ class LevelAction extends Action {
 	private function delete() {
 		if (isset($_GET['id'])) {
 			$this->model->id = $_GET['id'];
+			
+			$levelObj = $this->model->load();
+			$manage = new ManageModel();
+			$manage->level = $levelObj->level;
+			if ($manage->loadByLevel() != null) {
+				Tool::alertBack('存在人员是该等级的人员，无法删除');
+			}
+			
 			$affected_rows = $this->model->delete();
 			if ($affected_rows) {
 				Tool::alertLocation('恭喜，删除等级成功', 'level.php?action=display');

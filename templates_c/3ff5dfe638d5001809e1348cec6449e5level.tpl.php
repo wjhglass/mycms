@@ -36,23 +36,23 @@
 		<?php } ?>
 	</div>
 		<?php if (isset($this->vars['add']) && $this->vars['add'] == true) {?>
-			<form method="post">
+			<form method="post" name="add">
 				<table cellspacing="0" class="left">
-					<tr><td>等级代码：<input type="text" name="level" class="text" /></td></tr>
-					<tr><td>等级名称：<input type="text" name="level_name" class="text" /></td></tr>
-					<tr><td><textarea name="level_info"></textarea></td></tr>
-					<tr><td><input type="submit" name="send" value="新增等级" class="submit" />[<a href="level.php?action=display">返回列表</a>]</td></tr>
+					<tr><td>等级代码：<input type="text" name="level" class="text" /> （必须为数字）</td></tr>
+					<tr><td>等级名称：<input type="text" name="level_name" class="text" /> （在两位到20位之间）</td></tr>
+					<tr><td><textarea name="level_info"></textarea> （不得大于200位）</td></tr>
+					<tr><td><input type="submit" name="send" value="新增等级" onclick="return checkAdd();" class="submit" />[<a href="level.php?action=display">返回列表</a>]</td></tr>
 				</table>
 			</form>
 		<?php } ?>
 		<?php if (isset($this->vars['edit']) && $this->vars['edit'] == true) {?>
-			<form method="post">
+			<form method="post" name="edit">
 				<input type="hidden" value="<?php echo $this->vars['id'];?>" name="id" />
 				<table cellspacing="0" class="left">
 					<tr><td>等级代码：<input type="text" name="level" class="text" value="<?php echo $this->vars['level'];?>" readonly="readonly" /></td></tr>
-					<tr><td>等级名称：<input type="text" name="level_name" value="<?php echo $this->vars['level_name'];?>" class="text" /></td></tr>
-					<tr><td><textarea name="level_info" value="<?php echo $this->vars['level_info'];?>"><?php echo $this->vars['level_info'];?></textarea></td></tr>
-					<tr><td><input type="submit" name="send" value="编辑等级" class="submit" />[<a href="level.php?action=display">返回列表</a>]</td></tr>
+					<tr><td>等级名称：<input type="text" name="level_name" value="<?php echo $this->vars['level_name'];?>" class="text" /> （在两位到20位之间）</td></tr>
+					<tr><td><textarea name="level_info" value="<?php echo $this->vars['level_info'];?>"><?php echo $this->vars['level_info'];?></textarea> （不得大于200位）</td></tr>
+					<tr><td><input type="submit" name="send" onclick="return checkEdit();" value="编辑等级" class="submit" />[<a href="level.php?action=display">返回列表</a>]</td></tr>
 				</table>
 			</form>
 		<?php } ?>

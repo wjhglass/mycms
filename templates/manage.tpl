@@ -39,25 +39,27 @@
 		{/if}
 	</div>
 		{if $add}
-			<form method="post">
+			<form method="post" name="add">
 				<table cellspacing="0" class="left">
-					<tr><td>用户名：<input type="text" name="admin_user" class="text" /></td></tr>
-					<tr><td>密　码：<input type="password" name="admin_password" class="text" /></td></tr>
-					<tr><td>等　级：
+					<tr><td>用  户  名：<input type="text" name="admin_user" class="text" /> （在两位到20位之间）</td></tr>
+					<tr><td>密　　码：<input type="password" name="admin_password" class="text" /> （不得小于六位）</td></tr>
+					<tr><td>密码确认：<input type="password" name="password_confirm" class="text" /></td></tr>
+					<tr><td>等　　级：
 						<select name="level">
 							{foreach $levels(key,value)}
 								<option value="{@value->LEVEL}">{@value->level_name}</option>
 							{/foreach}
 						</select>
 					</td></tr>
-					<tr><td><input type="submit" name="send" value="新增管理员" class="submit" />[<a href="manage.php?action=display">返回列表</a>]</td></tr>
+					<tr><td><input type="submit" name="send" value="新增管理员" onclick="return checkAdd();" class="submit" />[<a href="manage.php?action=display">返回列表</a>]</td></tr>
 				</table>
 			</form>
 		{/if}
 		{if $edit}
-			<form method="post">
+			<form method="post" name="edit">
 				<input type="hidden" value="{$id}" name="id" />
 				<input type="hidden" value="{$level}" id="level" />
+				<input type="hidden" value="{$admin_password}" name="pass" />
 				<table cellspacing="0" class="left">
 					<tr><td>用户名：<input type="text" name="admin_user" class="text" value="{$admin_user}" readonly="readonly" /></td></tr>
 					<tr><td>密　码：<input type="password" name="admin_password" class="text" /></td></tr>
@@ -68,7 +70,7 @@
 							{/foreach}
 						</select>
 					</td></tr>
-					<tr><td><input type="submit" name="send" value="编辑管理员" class="submit" />[<a href="manage.php?action=display">返回列表</a>]</td></tr>
+					<tr><td><input type="submit" name="send" value="编辑管理员" onclick="return checkEdit();" class="submit" />[<a href="manage.php?action=display">返回列表</a>]</td></tr>
 				</table>
 			</form>
 		{/if}

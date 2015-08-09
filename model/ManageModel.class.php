@@ -43,6 +43,54 @@ sql;
 	}
 	
 	/**
+	 * 通过管理员的用户名去查找
+	 * @author 吴金华
+	 * @version 1.0
+	 * @since 2015-8-9
+	 */
+	public function loadByAdminuser() {
+		$sql = <<<sql
+SELECT
+	a.id,
+	a.admin_user,
+	a.admin_password,
+	a.`level`,
+	a.login_count,
+	a.last_ip,
+	a.last_time,
+	a.reg_time
+FROM
+	mycms_manage a
+WHERE a.admin_user='$this->admin_user' LIMIT 1
+sql;
+		return parent::one($sql);
+	}
+	
+	/**
+	 * 通过等级的代码去查找
+	 * @author 吴金华
+	 * @version 1.0
+	 * @since 2015-8-9
+	 */
+	public function loadByLevel() {
+		$sql = <<<sql
+SELECT
+	a.id,
+	a.admin_user,
+	a.admin_password,
+	a.`level`,
+	a.login_count,
+	a.last_ip,
+	a.last_time,
+	a.reg_time
+FROM
+	mycms_manage a
+WHERE a.`level`='$this->level' LIMIT 1
+sql;
+		return parent::one($sql);
+	}
+	
+	/**
 	 * 查询所有管理员
 	 *
 	 * @author 吴金华
@@ -65,27 +113,6 @@ FROM
 LEFT JOIN mycms_level b ON a.`level` = b.`level`
 ORDER BY a.reg_time DESC
 LIMIT 0,10
-sql;
-		return parent::all($sql);
-	}
-	
-	/**
-	 * 查询所有的等级
-	 * @author 吴金华
-	 * @version 1.0
-	 * @since 2015-8-9
-	 */
-	public function listAllLevel() {
-		$sql = <<<sql
-SELECT
-	id,
-	LEVEL,
-	level_name,
-	level_info
-FROM
-	mycms_level
-ORDER BY
-	LEVEL DESC
 sql;
 		return parent::all($sql);
 	}

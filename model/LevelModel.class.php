@@ -39,6 +39,46 @@ sql;
 	}
 	
 	/**
+	 * 通过等级的名称去查找
+	 * @author 吴金华
+	 * @version 1.0
+	 * @since 2015-8-9
+	 */
+	public function loadByLevelName() {
+		$sql = <<<sql
+SELECT
+	a.id,
+	a.`level`,
+	a.level_name,
+	a.level_info
+FROM
+	mycms_level a
+WHERE a.level_name='$this->level_name' LIMIT 1
+sql;
+		return parent::one($sql);
+	}
+	
+	/**
+	 * 通过等级的代码去查找
+	 * @author 吴金华
+	 * @version 1.0
+	 * @since 2015-8-9
+	 */
+	public function loadByLevel() {
+		$sql = <<<sql
+SELECT
+	a.id,
+	a.`level`,
+	a.level_name,
+	a.level_info
+FROM
+	mycms_level a
+WHERE a.`level`='$this->level' LIMIT 1
+sql;
+		return parent::one($sql);
+	}
+	
+	/**
 	 * 查询所有等级
 	 *
 	 * @author 吴金华

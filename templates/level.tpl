@@ -22,15 +22,19 @@
 		{if $display}
 		<table cellspacing="0">
 			<tr><th>序号</th><th>等级代码</th><th>等级名称</th><th>等级信息</th><th>操作</th></tr>
-			{foreach $levels(key,value)}
-				<tr>
-					<td><script type="text/javascript">document.write({@key+1}+{$num});</script></td>
-					<td>{@value->LEVEL}</td>
-					<td>{@value->level_name}</td>
-					<td>{@value->level_info}</td>
-					<td><a href="level.php?action=edit&id={@value->id}">编辑</a> | <a href="level.php?action=delete&id={@value->id}" onclick="return confirm('您真的要删除吗？');">删除</a></td>
-				</tr>
-			{/foreach}
+			{if $levels}
+				{foreach $levels(key,value)}
+					<tr>
+						<td><script type="text/javascript">document.write({@key+1}+{$num});</script></td>
+						<td>{@value->LEVEL}</td>
+						<td>{@value->level_name}</td>
+						<td>{@value->level_info}</td>
+						<td><a href="level.php?action=edit&id={@value->id}">编辑</a> | <a href="level.php?action=delete&id={@value->id}" onclick="return confirm('您真的要删除吗？');">删除</a></td>
+					</tr>
+				{/foreach}
+			{else}
+			<tr><td colspan="5">对不起，没有查到任何的数据</td></tr>
+			{/if}
 		</table>
 		<p class="center">[<a href="level.php?action=add">新增等级</a>]</p>
 		<div id="page">{$page}</div>

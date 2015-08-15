@@ -22,18 +22,22 @@
 		{if $display}
 		<table cellspacing="0">
 			<tr><th>序号</th><th>用户名</th><th>等级</th><th>登录次数</th><th>最近登录ip</th><th>最近登录时间</th><th>注册时间</th><th>操作</th></tr>
-			{foreach $manages(key,value)}
-				<tr>
-					<td><script type="text/javascript">document.write({@key+1}+{$num});</script></td>
-					<td>{@value->admin_user}</td>
-					<td>{@value->level_name}</td>
-					<td>{@value->login_count}</td>
-					<td>{@value->last_ip}</td>
-					<td>{@value->last_time}</td>
-					<td>{@value->reg_time}</td>
-					<td><a href="manage.php?action=edit&id={@value->id}">编辑</a> | <a href="manage.php?action=delete&id={@value->id}" onclick="return confirm('您真的要删除吗？');">删除</a></td>
-				</tr>
-			{/foreach}
+			{if $manages}
+				{foreach $manages(key,value)}
+					<tr>
+						<td><script type="text/javascript">document.write({@key+1}+{$num});</script></td>
+						<td>{@value->admin_user}</td>
+						<td>{@value->level_name}</td>
+						<td>{@value->login_count}</td>
+						<td>{@value->last_ip}</td>
+						<td>{@value->last_time}</td>
+						<td>{@value->reg_time}</td>
+						<td><a href="manage.php?action=edit&id={@value->id}">编辑</a> | <a href="manage.php?action=delete&id={@value->id}" onclick="return confirm('您真的要删除吗？');">删除</a></td>
+					</tr>
+				{/foreach}
+			{else}
+			<tr><td colspan="8">对不起，没有查到任何的数据</td></tr>
+			{/if}
 		</table>
 		<p class="center">[<a href="manage.php?action=add">新增管理员</a>]</p>
 		<div id="page">{$page}</div>

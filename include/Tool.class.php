@@ -65,7 +65,7 @@ class Tool {
 		} else {
 			$string = htmlspecialchars ( $data );
 		}
-		return $string;
+		return isset($string) ? $string : '';
 	}
 	
 	/**

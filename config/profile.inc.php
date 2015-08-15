@@ -11,6 +11,7 @@ define ('PAGE_SIZE', 4);											// 分页中每一页的条数
 define ('BOTH_NUM', 3);											// 分页中两边保持数字分页的量
 define ('CODE_LENGTH', 5);											// 验证码的长度
 define ('PREV_URL', isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '');						// 上一页地址
+define ('NAV_SIZE', 10);						// 前台主导航显示的条数
 
 // 模版配置信息
 define ( 'TPL_DIR', ROOT_PATH . '/templates/' );

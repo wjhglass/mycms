@@ -15,7 +15,7 @@
 		<li><a href="javascript:;" id="Nav4" onclick="adminTopNav(4);">系统</a></li>
 	</ul>
 	<p>
-		您好，<strong><?php echo $this->vars['admin_user'];?></strong>[<a href="javascript:;"><?php echo $this->vars['level_name'];?></a>][<a href="../" target="_blank">去首页</a>][<a href="manage.php?action=logout" target="_parent">退出</a>]
+		您好，<strong><?php echo $this->vars['admin_user'];?></strong>[<a href="javascript:;"><?php echo $this->vars['level_name'];?></a>][<a href="../" target="_blank">去首页</a>][<a href="admin.login.php?action=logout" target="_parent">退出</a>]
 	</p>
 	<script type="text/javascript" src="../js/admin.top.nav.js"></script>
 </body>

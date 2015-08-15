@@ -7,14 +7,11 @@
 class LevelAction extends Action {
 	public function __construct(&$tmp) {
 		parent::__construct($tmp, new LevelModel());
-		$this->action();
-		$this->tmp->display('level.tpl');
 	}
 	
-	private function action() {
+	public function action() {
 		switch ($_GET ['action']) {
 			case 'display' :
-				Validate::checkSession();
 				$this->display();
 				break;
 			case 'add' :
@@ -24,7 +21,6 @@ class LevelAction extends Action {
 				$this->edit();
 				break;
 			case 'delete' :
-				Validate::checkSession();
 				$this->delete();
 				return;
 			default :

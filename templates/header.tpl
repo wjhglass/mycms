@@ -16,16 +16,11 @@
 <div class="nav">
 	<ul>
 		<li><a href="javascript:;">首页</a></li>
-		<li><a href="javascript:;">军事动态</a></li>
-		<li><a href="javascript:;">八卦娱乐</a></li>
-		<li><a href="javascript:;">时尚女人</a></li>
-		<li><a href="javascript:;">科技频道</a></li>
-		<li><a href="javascript:;">智能手机</a></li>
-		<li><a href="javascript:;">美容护肤</a></li>
-		<li><a href="javascript:;">热门汽车</a></li>
-		<li><a href="javascript:;">房产家居</a></li>
-		<li><a href="javascript:;">读书教育</a></li>
-		<li><a href="javascript:;">股票基金</a></li>
+		{if $navs}
+			{foreach $navs(key,value)}
+				<li><a href="javascript:;">{@value->nav_name}</a></li>
+			{/foreach}
+		{/if}
 	</ul>
 </div>
 <!--nav end-->

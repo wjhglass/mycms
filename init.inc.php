@@ -18,9 +18,9 @@ function __autoload($className) {
 		require ROOT_PATH . '/include/' . $className . '.class.php';
 	}
 }
-// 引入缓存的配置文件
-require '/cache.inc.php';
 
 // 实例化模版类
 $tmp = new Templates ();
 
+// 引入初始化的配置文件
+require '/common.inc.php';

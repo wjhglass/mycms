@@ -6,7 +6,7 @@
 <link rel="stylesheet" type="text/css" href="../style/admin.css" />
 </head>
 <body>
-	<form id="adminLogin" name="login" method="post" action="manage.php?action=login">
+	<form id="adminLogin" name="login" method="post" action="?action=login">
 		<fieldset>
 			<legend>登录cms后台管理系统</legend>
 			<label>帐　号：<input type="text" name="admin_user" class="text" /></label>

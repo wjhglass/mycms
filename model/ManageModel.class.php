@@ -5,22 +5,21 @@
  *
  */
 class ManageModel extends Model {
-	private $id;// 主键
-	private $admin_user;// 管理员用户名
+	private $id; // 主键
+	private $admin_user; // 管理员用户名
 	private $admin_password; // 管理员密码
-	private $level;// 管理员等级
+	private $level; // 管理员等级
 	private $limit; // limit语句
-	
 	public function __set($name, $val) {
-		$this->$name = $val;
+		$this->$name = Tool::mysqlString ( $val );
 	}
-	
 	public function __get($name) {
 		return $this->$name;
 	}
 	
 	/**
 	 * 验证用户名和密码
+	 * 
 	 * @author 吴金华
 	 * @version 1.0
 	 * @since 2015-8-9
@@ -37,11 +36,12 @@ ON a.`level`=b.`level`
 WHERE a.admin_user='$this->admin_user'
 	  AND a.admin_password='$this->admin_password' LIMIT 1
 sql;
-		return parent::one($sql);
+		return parent::one ( $sql );
 	}
 	
 	/**
 	 * 加载一个管理员
+	 * 
 	 * @author 吴金华
 	 * @version 1.0
 	 * @since 2015-8-3
@@ -61,11 +61,12 @@ FROM
 	mycms_manage a
 WHERE a.id='$this->id' LIMIT 1
 sql;
-		return parent::one($sql);
+		return parent::one ( $sql );
 	}
 	
 	/**
 	 * 通过管理员的用户名去查找
+	 * 
 	 * @author 吴金华
 	 * @version 1.0
 	 * @since 2015-8-9
@@ -85,11 +86,12 @@ FROM
 	mycms_manage a
 WHERE a.admin_user='$this->admin_user' LIMIT 1
 sql;
-		return parent::one($sql);
+		return parent::one ( $sql );
 	}
 	
 	/**
 	 * 通过等级的代码去查找
+	 * 
 	 * @author 吴金华
 	 * @version 1.0
 	 * @since 2015-8-9
@@ -109,11 +111,12 @@ FROM
 	mycms_manage a
 WHERE a.`level`='$this->level' LIMIT 1
 sql;
-		return parent::one($sql);
+		return parent::one ( $sql );
 	}
 	
 	/**
 	 * 获取管理员的总记录数
+	 * 
 	 * @author 吴金华
 	 * @version 1.0
 	 * @since 2015-8-9
@@ -125,8 +128,8 @@ SELECT
 FROM
 	mycms_manage
 sql;
-		return parent::getCount($sql);
-	} 
+		return parent::getCount ( $sql );
+	}
 	
 	/**
 	 * 查询所有管理员
@@ -152,17 +155,18 @@ LEFT JOIN mycms_level b ON a.`level` = b.`level`
 ORDER BY a.reg_time DESC
 $this->limit
 sql;
-		return parent::all($sql);
+		return parent::all ( $sql );
 	}
 	
 	/**
 	 * 添加管理员
+	 * 
 	 * @author 吴金华
 	 * @version 1.0
 	 * @since 2015-8-3
 	 */
 	public function add() {
-		$guid = Tool::createGuid();
+		$guid = Tool::createGuid ();
 		$sql = <<<sql
 INSERT INTO mycms_manage (
 	id,
@@ -180,11 +184,12 @@ VALUES
 		NOW()
 )
 sql;
-		return parent::aud($sql);
+		return parent::aud ( $sql );
 	}
 	
 	/**
 	 * 修改管理员
+	 * 
 	 * @author 吴金华
 	 * @version 1.0
 	 * @since 2015-8-3
@@ -198,11 +203,12 @@ SET
 WHERE 
 	id='$this->id' LIMIT 1
 sql;
-		return parent::aud($sql);
+		return parent::aud ( $sql );
 	}
 	
 	/**
 	 * 删除管理员
+	 * 
 	 * @author 吴金华
 	 * @version 1.0
 	 * @since 2015-8-3
@@ -211,6 +217,6 @@ sql;
 		$sql = <<<sql
 DELETE FROM mycms_manage WHERE id='$this->id' LIMIT 1
 sql;
-		return parent::aud($sql);
+		return parent::aud ( $sql );
 	}
 }

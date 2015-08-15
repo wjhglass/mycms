@@ -6,6 +6,7 @@ define('DB_PASS','');												//密码
 define('DB_NAME','mycms');											//数据库
 
 // 系统配置
+define('GPC',get_magic_quotes_gpc());						//sql转义功能是否打开了
 define ('PAGE_SIZE', 10);											// 分页中每一页的条数
 define ('BOTH_NUM', 3);											// 分页中两边保持数字分页的量
 define ('CODE_LENGTH', 5);											// 验证码的长度

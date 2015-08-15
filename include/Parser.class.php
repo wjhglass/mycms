@@ -44,7 +44,7 @@ class Praser {
 	private function parForeach() {
 		$pattenForeach = '/\{foreach\s+\$([\w]+)\(([\w]+),([\w]+)\)\}/';
 		$pattenEndForeach = '/\{\/foreach\}/';
-		$pattenVar = '/\{@([\w]+)([\w\-\>]*)\}/';
+		$pattenVar = '/\{@([\w]+)([\w\-\>\+]*)\}/';
 		if (preg_match ( $pattenForeach, $this->tpl )) {
 			if (preg_match ( $pattenEndForeach, $this->tpl )) {
 				$this->tpl = preg_replace ( $pattenForeach, "<?php foreach (\$this->vars['$1'] as \$$2=>\$$3) { ?>", $this->tpl );

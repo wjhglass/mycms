@@ -40,9 +40,11 @@ class LevelAction extends Action {
 	 * @since 2015-8-9
 	 */
 	private function display() {
+		parent::page($this->model->getLevelCount ());
+		
 		$this->tmp->assign ( 'display', true );
 		$this->tmp->assign ( 'title', '等级列表' );
-		$this->tmp->assign ( 'levels', $this->model->listAll () );
+		$this->tmp->assign ( 'levels', $this->model->search () );
 	}
 	
 	/**
@@ -91,6 +93,7 @@ class LevelAction extends Action {
 		}
 		$this->tmp->assign ( 'add', true );
 		$this->tmp->assign ( 'title', '新增等级' );
+		$this->tmp->assign ( 'prev_url', PREV_URL );
 	}
 	
 	/**
@@ -118,7 +121,7 @@ class LevelAction extends Action {
 			$this->model->id = $_POST['id'];
 			$this->model->level_name = $_POST['level_name'];
 			$this->model->level_info = $_POST['level_info'];
-			$this->model->modify() ? Tool::alertLocation('恭喜你，修改等级成功！', 'level.php?action=display') : Tool::alertBack('很遗憾，修改等级失败！');
+			$this->model->modify() ? Tool::alertLocation('恭喜你，修改等级成功！', $_POST ['prev_url']) : Tool::alertBack('很遗憾，修改等级失败！');
 		}
 		
 		$this->tmp->assign ( 'edit', true );
@@ -130,6 +133,7 @@ class LevelAction extends Action {
 		$this->tmp->assign ( 'level', $obj->level );
 		$this->tmp->assign ( 'level_name', $obj->level_name  );
 		$this->tmp->assign ( 'level_info', $obj->level_info  );
+		$this->tmp->assign ( 'prev_url', PREV_URL );
 	}
 	
 	/**
@@ -151,7 +155,7 @@ class LevelAction extends Action {
 			
 			$affected_rows = $this->model->delete();
 			if ($affected_rows) {
-				Tool::alertLocation('恭喜，删除等级成功', 'level.php?action=display');
+				Tool::alertLocation('恭喜，删除等级成功', PREV_URL);
 			} else {
 				Tool::alertBack('删除失败咯，删除信息不存在或系统错误');
 			}

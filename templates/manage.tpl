@@ -21,10 +21,10 @@
 		
 		{if $display}
 		<table cellspacing="0">
-			<tr><th>编号</th><th>用户名</th><th>等级</th><th>登录次数</th><th>最近登录ip</th><th>最近登录时间</th><th>注册时间</th><th>操作</th></tr>
+			<tr><th>序号</th><th>用户名</th><th>等级</th><th>登录次数</th><th>最近登录ip</th><th>最近登录时间</th><th>注册时间</th><th>操作</th></tr>
 			{foreach $manages(key,value)}
 				<tr>
-					<td>{@value->id}</td>
+					<td><script type="text/javascript">document.write({@key+1}+{$num});</script></td>
 					<td>{@value->admin_user}</td>
 					<td>{@value->level_name}</td>
 					<td>{@value->login_count}</td>
@@ -52,7 +52,7 @@
 							{/foreach}
 						</select>
 					</td></tr>
-					<tr><td><input type="submit" name="send" value="新增管理员" onclick="return checkAdd();" class="submit" />[<a href="manage.php?action=display">返回列表</a>]</td></tr>
+					<tr><td><input type="submit" name="send" value="新增管理员" onclick="return checkAdd();" class="submit" />[<a href="{$prev_url}">返回列表</a>]</td></tr>
 				</table>
 			</form>
 		{/if}
@@ -61,6 +61,7 @@
 				<input type="hidden" value="{$id}" name="id" />
 				<input type="hidden" value="{$level}" id="level" />
 				<input type="hidden" value="{$admin_password}" name="pass" />
+				<input type="hidden" value="{$prev_url}" name="prev_url" />
 				<table cellspacing="0" class="left">
 					<tr><td>用户名：<input type="text" name="admin_user" class="text" value="{$admin_user}" readonly="readonly" /></td></tr>
 					<tr><td>密　码：<input type="password" name="admin_password" class="text" /></td></tr>
@@ -71,7 +72,7 @@
 							{/foreach}
 						</select>
 					</td></tr>
-					<tr><td><input type="submit" name="send" value="编辑管理员" onclick="return checkEdit();" class="submit" />[<a href="manage.php?action=display">返回列表</a>]</td></tr>
+					<tr><td><input type="submit" name="send" value="编辑管理员" onclick="return checkEdit();" class="submit" />[<a href="{$prev_url}">返回列表</a>]</td></tr>
 				</table>
 			</form>
 		{/if}

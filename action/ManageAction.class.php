@@ -86,10 +86,15 @@ class ManageAction extends Action {
 				// 验证通过去数据库验证
 				$this->model->admin_user = $_POST ['admin_user'];
 				$this->model->admin_password = md5 ( $_POST ['admin_password'] );
+				$this->model->last_ip = $_SERVER["REMOTE_ADDR"];
 				$validateObj = $this->model->validate ();
 				if ($validateObj != null) {
 					$_SESSION['admin']['admin_user'] = $validateObj->admin_user;
 					$_SESSION['admin']['level_name'] = $validateObj->level_name;
+					
+					// 统计管理员的登录信息
+					$this->model->statisticsLoginInfo();
+					
 					Tool::alertLocation ( null, 'admin.php' );
 				} else {
 					Tool::alertBack ( '用户名或密码不正确，请重新输入' );
@@ -108,13 +113,10 @@ class ManageAction extends Action {
 	 * @since 2015-8-4
 	 */
 	private function display() {
-		$page = new Page ( $this->model->getManageCount (), PAGE_SIZE );
-		$this->model->limit = $page->limit;
-		
+		parent::page($this->model->getManageCount ());
 		$this->tmp->assign ( 'display', true );
 		$this->tmp->assign ( 'title', '管理员列表' );
 		$this->tmp->assign ( 'manages', $this->model->listAll () );
-		$this->tmp->assign ( 'page', $page->display () );
 	}
 	
 	/**
@@ -160,6 +162,7 @@ class ManageAction extends Action {
 		}
 		$this->tmp->assign ( 'add', true );
 		$this->tmp->assign ( 'title', '新增管理员' );
+		$this->tmp->assign ( 'prev_url', PREV_URL );
 		$level = new LevelModel ();
 		$this->tmp->assign ( 'levels', $level->listAll () );
 	}
@@ -183,7 +186,7 @@ class ManageAction extends Action {
 			}
 			$this->model->id = $_POST ['id'];
 			$this->model->level = $_POST ['level'];
-			$this->model->modify () ? Tool::alertLocation ( '恭喜你，修改管理员成功！', 'manage.php?action=display' ) : Tool::alertBack ( '很遗憾，修改管理员失败！' );
+			$this->model->modify () ? Tool::alertLocation ( '恭喜你，修改管理员成功！', $_POST ['prev_url'] ) : Tool::alertBack ( '很遗憾，修改管理员失败！' );
 		}
 		
 		$this->tmp->assign ( 'edit', true );
@@ -195,6 +198,7 @@ class ManageAction extends Action {
 		$this->tmp->assign ( 'level', $obj->level );
 		$this->tmp->assign ( 'admin_user', $obj->admin_user );
 		$this->tmp->assign ( 'admin_password', $obj->admin_password );
+		$this->tmp->assign ( 'prev_url', PREV_URL );
 		$level = new LevelModel ();
 		$this->tmp->assign ( 'levels', $level->listAll () );
 	}
@@ -211,7 +215,7 @@ class ManageAction extends Action {
 			$this->model->id = $_GET ['id'];
 			$affected_rows = $this->model->delete ();
 			if ($affected_rows) {
-				Tool::alertLocation ( '恭喜，删除管理员成功', 'manage.php?action=display' );
+				Tool::alertLocation ( '恭喜，删除管理员成功', PREV_URL );
 			} else {
 				Tool::alertBack ( '删除失败咯，删除信息不存在或系统错误' );
 			}

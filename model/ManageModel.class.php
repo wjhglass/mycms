@@ -9,6 +9,9 @@ class ManageModel extends Model {
 	private $admin_user; // 管理员用户名
 	private $admin_password; // 管理员密码
 	private $level; // 管理员等级
+	private $login_count;// 登录次数
+	private $last_ip;// 最后一次登录的ip
+	private $last_time;// 最后一次登录的时间
 	private $limit; // limit语句
 	public function __set($name, $val) {
 		$this->$name = Tool::mysqlString ( $val );
@@ -27,6 +30,7 @@ class ManageModel extends Model {
 	public function validate() {
 		$sql = <<<sql
 SELECT
+	a.id,
 	a.admin_user,
 	b.level_name
 FROM
@@ -216,6 +220,25 @@ sql;
 	public function delete() {
 		$sql = <<<sql
 DELETE FROM mycms_manage WHERE id='$this->id' LIMIT 1
+sql;
+		return parent::aud ( $sql );
+	}
+	
+	/**
+	 * 统计管理员的登录信息，包括登录次数，最后一、一次登录的ip和登录时间等
+	 * @author 吴金华
+	 * @version 1.0
+	 * @since 2015-8-15
+	 */
+	public function statisticsLoginInfo() {
+		$sql = <<<sql
+UPDATE  mycms_manage
+SET
+	login_count=login_count+1,
+	last_ip='$this->last_ip',
+	last_time=NOW()
+WHERE
+	admin_user='$this->admin_user' LIMIT 1
 sql;
 		return parent::aud ( $sql );
 	}

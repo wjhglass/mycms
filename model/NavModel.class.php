@@ -159,6 +159,29 @@ sql;
 	}
 	
 	/**
+	 * 获取所有的主导航
+	 * @author 吴金华
+	 * @version 1.0
+	 * @since 2015-8-16
+	 */
+	public function listAllTopNav() {
+		$sql = "
+		SELECT
+			id,
+			nav_name,
+			nav_info,
+			pid,
+			sort
+		FROM
+			mycms_nav
+		WHERE
+			pid is null
+		ORDER BY
+			sort ASC";
+		return parent::all ( $sql );
+	}
+	
+	/**
 	 * 获取前台的子导航
 	 * @author 吴金华
 	 * @version 1.0

@@ -49,6 +49,7 @@
 					<td>
 						栏　　目：<select name="nav">
 									<option>--请选择一个栏目类别--</option>
+									{$topNavs}
 								 </select>		
 					</td>
 				</tr>

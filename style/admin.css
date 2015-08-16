@@ -42,7 +42,8 @@ ul,ol{list-style:none;}
 #main table.content td{text-align:left;padding-left:5px;}
 #main table.content td input.text{width:440px;}
 #main table.content td input.small{width:100px;}
-#main table.content td select{width:150px;height:22px;}
+#main table.content td select{width:150px;height:22px;border:1px solid #ccc;}
+#main table.content td select optgroup{font-style:normal;}
 #main table.content td textarea{margin:0;width:440px;height:80px;overflow:auto;}
 #main table.content td span.middle{vertical-align:40px;}
 #main a{color:#3b6ea5;text-decoration:none;}

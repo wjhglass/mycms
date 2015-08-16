@@ -52,7 +52,20 @@ class ContentAction extends Action {
 	private function add() {
 		$this->tmp->assign ( 'add', true );
 		$this->tmp->assign ( 'title', '新增文档' );
-		$this->tmp->assign ( 'prev_url', PREV_URL );
+		$nav = new NavModel();
+		$html = '';
+		foreach ($nav->listAllTopNav() as $obj) {
+			$html .= '<optgroup label="'.$obj->nav_name.'">';
+			$nav->pid = $obj->id;
+			$children = $nav->listFrontChildNav();
+			if ($children) {
+				foreach ($children as $navObj) {
+					$html .= '<option value="'.$navObj->id.'">'.$navObj->nav_name.'</option>';
+				}
+			}
+			$html .= '</optgroup>';
+		}
+		$this->tmp->assign ( 'topNavs', $html );
 	}
 	
 	/**

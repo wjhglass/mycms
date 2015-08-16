@@ -48,6 +48,10 @@ class Templates {
 			exit ( 'ERROR：模版文件不存在！' );
 		}
 		
+		if (!empty($_SERVER['QUERY_STRING'])) {
+			$tplname .= $_SERVER['QUERY_STRING'];
+		}
+		
 		// 生成编译文件
 		$parfile = TPL_C_DIR . md5 ( $tplname ) . $tplname . '.php';
 		// 缓存编译文件

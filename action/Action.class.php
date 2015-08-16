@@ -8,7 +8,7 @@ class Action {
 	protected $tmp;
 	protected $model;
 	
-	protected function __construct(&$tmp, &$model) {
+	protected function __construct(&$tmp, &$model = null) {
 		$this->tmp = $tmp;
 		$this->model = $model;
 	}

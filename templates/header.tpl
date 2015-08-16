@@ -6,7 +6,7 @@
 <!--top end-->
 
 <!--header start-->
-<div class="header magictime openUpRightRetourn">
+<div class="header magictime swap">
 	<h1><a href="javascript:;">倚天一出，谁与争锋</a></h1>
 	<div class="adver"><a href="javascript:;"><img width="690" height="80" alt="广告" src="images/adver.png" /></a></div>
 </div>
@@ -15,10 +15,10 @@
 <!--nav start-->
 <div class="nav">
 	<ul>
-		<li><a href="javascript:;">首页</a></li>
+		<li><a href="./">首页</a></li>
 		{if $navs}
 			{foreach $navs(key,value)}
-				<li><a href="javascript:;">{@value->nav_name}</a></li>
+				<li><a href="list.php?id={@value->id}">{@value->nav_name}</a></li>
 			{/foreach}
 		{/if}
 	</ul>

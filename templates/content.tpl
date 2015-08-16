@@ -41,7 +41,7 @@
 		{/if}
 	</div>
 	{if $add}
-		<form method="post" name="add">
+		<form method="post" name="content">
 			<table cellspacing="0" class="content">
 				<tr><th><strong>发布一条新文档</strong></th></tr>
 				<tr><td>文档标题：<input type="text" name="title" class="text" /></td></tr>
@@ -63,7 +63,9 @@
 				</tr>
 				<tr><td>TAG 标签：<input type="text" name="tag" class="text" /></td></tr>
 				<tr><td>关  键  字：<input type="text" name="keyword" class="text" /></td></tr>
-				<tr><td>缩  略  图：<input type="text" name="thumbnail" class="text" /><input type="button" value="上传缩略图" onclick="centerWindow();" /></td></tr>
+				<tr><td>缩  略  图：<input type="text" name="thumbnail" class="text" readonly="readonly" /><input type="button" value="上传缩略图" onclick="centerWindow('../templates/upfile.html','upfile','400','100');" />
+					<img name="pic" style="display:none;" />
+				</td></tr>
 				<tr><td>文章来源：<input type="text" name="source" class="text" /></td></tr>
 				<tr><td>作　　者：<input type="text" name="author" class="text" /></td></tr>
 				<tr>

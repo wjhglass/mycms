@@ -41,6 +41,23 @@ class Tool {
 	}
 	
 	/**
+	 * 弹窗赋值关闭(上传专用)
+	 * @author 吴金华
+	 * @version 1.0
+	 * @since 2015-8-16
+	 * @param unknown $info
+	 * @param unknown $path
+	 */
+	static public function alertOpenerClose($info,$path) {
+		echo "<script type='text/javascript'>alert('$info');</script>";
+		echo "<script type='text/javascript'>opener.document.content.thumbnail.value='$path';</script>";
+		echo "<script type='text/javascript'>opener.document.content.pic.style.display='block';</script>";
+				echo "<script type='text/javascript'>opener.document.content.pic.src='$path';</script>";
+				echo "<script type='text/javascript'>window.close();</script>";
+						exit();
+	}
+	
+	/**
 	 * 显示html过滤
 	 * 
 	 * @author 吴金华

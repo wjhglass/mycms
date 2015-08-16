@@ -10,4 +10,5 @@ CKEDITOR.editorConfig = function( config ) {
 	
 	config.language = 'zh-cn';
 	config.uiColor = '#FFF';
+	config.filebrowserImageUploadUrl = '../config/ckeup.php?type=img';
 };

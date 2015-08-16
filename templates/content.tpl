@@ -63,7 +63,7 @@
 				</tr>
 				<tr><td>TAG 标签：<input type="text" name="tag" class="text" /></td></tr>
 				<tr><td>关  键  字：<input type="text" name="keyword" class="text" /></td></tr>
-				<tr><td>缩  略  图：<input type="text" name="thumbnail" class="text" /></td></tr>
+				<tr><td>缩  略  图：<input type="text" name="thumbnail" class="text" /><input type="button" value="上传缩略图" onclick="centerWindow();" /></td></tr>
 				<tr><td>文章来源：<input type="text" name="source" class="text" /></td></tr>
 				<tr><td>作　　者：<input type="text" name="author" class="text" /></td></tr>
 				<tr>

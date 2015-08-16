@@ -37,6 +37,7 @@ ul,ol{list-style:none;}
 #main a:hover{text-decoration:underline;}
 #main p.center{text-align:center;padding:20px;}
 #main form input.text{width:220px;height:19px;border:1px solid #eee;}
+#main form input.sort{width:30px;text-align:center;}
 #main form select{width:100px;height:19px;}
 #main form input.submit{cursor:pointer;margin:0 0 0 47px;background:#fee;width:90px;height:26px;border-radius:4px;}
 #main form input.submit:hover{background:#fcc;transition:all 0.8s ease;}

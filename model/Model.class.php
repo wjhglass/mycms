@@ -86,4 +86,19 @@ class Model {
 		
 		return Tool::htmlString ( $models );
 	}
+	
+	/**
+	 * 执行多条sql语句
+	 * @author 吴金华
+	 * @version 1.0
+	 * @since 2015-8-16
+	 * @param unknown $sql
+	 */
+	public function multi($sql)	{
+		$db = DB::getDB();
+		$db->multi_query($sql);
+		$result = null;
+		DB::unDB($result, $db);
+		return true;
+	}
 }

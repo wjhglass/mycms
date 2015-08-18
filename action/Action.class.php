@@ -13,8 +13,8 @@ class Action {
 		$this->model = $model;
 	}
 	
-	protected function page($total) {
-		$page = new Page ( $total, PAGE_SIZE );
+	protected function page($total, $pagesize = PAGE_SIZE) {
+		$page = new Page ( $total, $pagesize );
 		$this->model->limit = $page->limit;
 		$this->tmp->assign ( 'page', $page->display () );
 		$this->tmp->assign ( 'num', ($page->curPage - 1) * PAGE_SIZE );

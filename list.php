@@ -6,6 +6,6 @@ global $tmp;
 require dirname(__FILE__).'/init.inc.php';
 
 $list = new ListAction($tmp);
-$list->getNav();
+$list->execute();
 // 载入tpl文件
 $tmp->display ( 'list.tpl' );

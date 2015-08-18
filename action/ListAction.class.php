@@ -10,12 +10,51 @@ class ListAction extends Action {
 	}
 	
 	/**
+	 * 总体调节流程的方法
+	 * @author 吴金华
+	 * @version 1.0
+	 * @since 2015-8-17
+	 */
+	public function execute() {
+		$this->getNav();
+		$this->getListContent();
+	}
+	
+	/**
+	 * 获取前台文档列表
+	 * @author 吴金华
+	 * @version 1.0
+	 * @since 2015-8-17
+	 */
+	private function getListContent() {
+		if (isset($_GET['id'])) {
+			parent::__construct($this->tmp, new ContentModel());
+			$this->model->id = $_GET['id'];
+			$navids = $this->model->getNavChild();
+			if ($navids) {
+				$this->model->nav = Tool::objArrOfStr($navids,'id');
+			} else {
+				$id = $this->model->id;
+				$this->model->nav = "'$id'";
+			}
+			
+			parent::page($this->model->getContentCount(), ARTICLE_SIZE);
+			$contents = $this->model->listContentByNav();
+			$contents = Tool::subStr($contents,'info',120,'utf-8');
+			$contents = Tool::subStr($contents,'title',35,'utf-8');
+			$this->tmp->assign('contents', $contents );
+		} else {
+			Tool::alertBack('非法操作');
+		}
+	}
+	
+	/**
 	 * 获取前台的导航
 	 * @author 吴金华
 	 * @version 1.0
 	 * @since 2015-8-16
 	 */
-	public function getNav() {
+	private function getNav() {
 		if (isset($_GET['id'])) {
 			$nav = new NavModel();
 			$nav->id = $_GET['id'];

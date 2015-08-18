@@ -42,24 +42,25 @@ class Tool {
 	
 	/**
 	 * 弹窗赋值关闭(上传专用)
+	 *
 	 * @author 吴金华
 	 * @version 1.0
 	 * @since 2015-8-16
-	 * @param unknown $info
-	 * @param unknown $path
+	 * @param unknown $info        	
+	 * @param unknown $path        	
 	 */
-	static public function alertOpenerClose($info,$path) {
+	static public function alertOpenerClose($info, $path) {
 		echo "<script type='text/javascript'>alert('$info');</script>";
 		echo "<script type='text/javascript'>opener.document.content.thumbnail.value='$path';</script>";
 		echo "<script type='text/javascript'>opener.document.content.pic.style.display='block';</script>";
-				echo "<script type='text/javascript'>opener.document.content.pic.src='$path';</script>";
-				echo "<script type='text/javascript'>window.close();</script>";
-						exit();
+		echo "<script type='text/javascript'>opener.document.content.pic.src='$path';</script>";
+		echo "<script type='text/javascript'>window.close();</script>";
+		exit ();
 	}
 	
 	/**
 	 * 显示html过滤
-	 * 
+	 *
 	 * @author 吴金华
 	 * @version 1.0
 	 * @since 2015-8-15
@@ -73,8 +74,8 @@ class Tool {
 			}
 		} elseif (is_object ( $data )) {
 			// 反射出类传入的类的实例
-			$reflect=new ReflectionClass($data);
-			$string  = $reflect->newInstanceArgs();
+			$reflect = new ReflectionClass ( $data );
+			$string = $reflect->newInstanceArgs ();
 			
 			foreach ( $data as $key => $value ) {
 				$string->$key = Tool::htmlString ( $value ); // 递归
@@ -82,12 +83,12 @@ class Tool {
 		} else {
 			$string = htmlspecialchars ( $data );
 		}
-		return isset($string) ? $string : '';
+		return isset ( $string ) ? $string : '';
 	}
 	
 	/**
 	 * 数据库输入过滤
-	 * 
+	 *
 	 * @author 吴金华
 	 * @version 1.0
 	 * @since 2015-8-15
@@ -99,8 +100,54 @@ class Tool {
 	}
 	
 	/**
+	 * 将对象数组转换成字符串，并且去掉最后的逗号
+	 *
+	 * @author 吴金华
+	 * @version 1.0
+	 * @since 2015-8-18
+	 * @param unknown $object        	
+	 * @param unknown $field        	
+	 * @return string
+	 */
+	static public function objArrOfStr($object, $field) {
+		$html = '';
+		if ($object) {
+			foreach ( $object as $value ) {
+				$fld = $value->$field;
+				$html .= "'$fld',";
+			}
+		}
+		
+		$retStr = stripslashes(substr ( $html, 0, strlen ( $html ) - 1 ));
+		return $retStr;
+	}
+	
+	/**
+	 * 字符串截取
+	 *
+	 * @author 吴金华
+	 * @version 1.0
+	 * @since 2015-8-17
+	 * @param unknown $object        	
+	 * @param unknown $field        	
+	 * @param unknown $length        	
+	 * @param unknown $encoding        	
+	 * @return unknown
+	 */
+	static public function subStr($object, $field, $length, $encoding) {
+		if ($object) {
+			foreach ( $object as $value ) {
+				if (mb_strlen ( $value->$field, $encoding ) > $length) {
+					$value->$field = mb_substr ( $value->$field, 0, $length, $encoding ) . '...';
+				}
+			}
+		}
+		return $object;
+	}
+	
+	/**
 	 * 清理session
-	 * 
+	 *
 	 * @author 吴金华
 	 * @version 1.0
 	 * @since 2015-8-15

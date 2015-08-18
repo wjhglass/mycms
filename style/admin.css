@@ -40,6 +40,7 @@ ul,ol{list-style:none;}
 #main table th{background:#eef37e;border-bottom:1px solid #d5dfe8;font-weight:normal;}
 #main table td{border-bottom:1px solid #eee;}
 #main table.content td{text-align:left;padding-left:5px;}
+#main table.content td span.red{color:red;}
 #main table.content td input.text{width:440px;}
 #main table.content td input.small{width:100px;}
 #main table.content td select{width:150px;height:22px;border:1px solid #ccc;}

@@ -58,6 +58,17 @@ class Validate {
 	}
 	
 	/**
+	 * 判断数据是否是数字
+	 * @author 吴金华
+	 * @version 1.0
+	 * @since 2015-8-17
+	 * @param unknown $data
+	 */
+	public static function isNum($data) {
+		return is_numeric($data);
+	}
+	
+	/**
 	 * 验证session是否存在
 	 * @author 吴金华
 	 * @version 1.0

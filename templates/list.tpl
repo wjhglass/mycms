@@ -14,37 +14,19 @@
 	<!-- list start -->
 	<div id="list">
 		<h2>当前位置&gt;<a href="list.php?id={$nid}">{$nnav_name}</a>&gt;<a href="list.php?id={$id}">{$nav_name}</a></h2>
-		<dl>
-			<dt><img alt="暂无图片" src="images/none.jpg" width="150" height="100"></dt>
-			<dd>[<strong>军事动态</strong>] <a href="javascript:;">联合利华因散布涨价信息被罚200万</a></dd>
-			<dd>日期：2011年10月10日 17:17:17 点击率：224 好评：0</dd>
-			<dd>核心提示：国家发改委发布公告称，3月下旬，联合利华(中国)有限公司有关负责人多次接受采访发表日化产品涨价言论。此行为导致日化产品涨价的信息广泛传播，增强了消费者涨价预此行为导致日化产品涨价的信息广泛传播，增强了消费者涨价预...</dd>
-		</dl>
-		<dl>
-			<dt><img alt="暂无图片" src="images/none.jpg" width="150" height="100"></dt>
-			<dd>[<strong>军事动态</strong>] <a href="javascript:;">联合利华因散布涨价信息被罚200万</a></dd>
-			<dd>日期：2011年10月10日 17:17:17 点击率：224 好评：0</dd>
-			<dd>核心提示：国家发改委发布公告称，3月下旬，联合利华(中国)有限公司有关负责人多次接受采访发表日化产品涨价言论。此行为导致日化产品涨价的信息广泛传播，增强了消费者涨价预此行为导致日化产品涨价的信息广泛传播，增强了消费者涨价预...</dd>
-		</dl>
-		<dl>
-			<dt><img alt="暂无图片" src="images/none.jpg" width="150" height="100"></dt>
-			<dd>[<strong>军事动态</strong>] <a href="javascript:;">联合利华因散布涨价信息被罚200万</a></dd>
-			<dd>日期：2011年10月10日 17:17:17 点击率：224 好评：0</dd>
-			<dd>核心提示：国家发改委发布公告称，3月下旬，联合利华(中国)有限公司有关负责人多次接受采访发表日化产品涨价言论。此行为导致日化产品涨价的信息广泛传播，增强了消费者涨价预此行为导致日化产品涨价的信息广泛传播，增强了消费者涨价预...</dd>
-		</dl>
-		<dl>
-			<dt><img alt="暂无图片" src="images/none.jpg" width="150" height="100"></dt>
-			<dd>[<strong>军事动态</strong>] <a href="javascript:;">联合利华因散布涨价信息被罚200万</a></dd>
-			<dd>日期：2011年10月10日 17:17:17 点击率：224 好评：0</dd>
-			<dd>核心提示：国家发改委发布公告称，3月下旬，联合利华(中国)有限公司有关负责人多次接受采访发表日化产品涨价言论。此行为导致日化产品涨价的信息广泛传播，增强了消费者涨价预此行为导致日化产品涨价的信息广泛传播，增强了消费者涨价预...</dd>
-		</dl>
-		<dl>
-			<dt><img alt="暂无图片" src="images/none.jpg" width="150" height="100"></dt>
-			<dd>[<strong>军事动态</strong>] <a href="javascript:;">联合利华因散布涨价信息被罚200万</a></dd>
-			<dd>日期：2011年10月10日 17:17:17 点击率：224 好评：0</dd>
-			<dd>核心提示：国家发改委发布公告称，3月下旬，联合利华(中国)有限公司有关负责人多次接受采访发表日化产品涨价言论。此行为导致日化产品涨价的信息广泛传播，增强了消费者涨价预此行为导致日化产品涨价的信息广泛传播，增强了消费者涨价预...</dd>
-		</dl>
-		<div id="page">分页</div>
+		{if $contents}
+		{foreach $contents(key,value)}
+			<dl>
+				<dt><img alt="新闻图片" src="{@value->thumbnail}" width="150" height="100"></dt>
+				<dd>[<strong>{@value->nav_name}</strong>] <a href="javascript:;">{@value->title}</a></dd>
+				<dd>日期：{@value->pubdate} 点击率：{@value->count} 好评：0</dd>
+				<dd>{@value->info}</dd>
+			</dl>
+		{/foreach}
+		{else}
+		<p class="none">该类下没有如何数据</p>
+		{/if}
+		<div id="page">{$page}</div>
 	</div>	
 	<!-- list end -->
 	

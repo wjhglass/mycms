@@ -4,8 +4,10 @@
 #list h2{border:1px solid #ccc;border-bottom:none;}
 #list h2 a{color:#360;text-decoration:none;}
 #list h2 a:hover{color:#f60;}
+#list p.none{padding:20px;text-align:center;border:1px dashed #ccc;}
 #list dl{height:110px;margin:10px 0;border-bottom:1px dashed #ccc;}
 #list dl dt{width:150px;height:100px;float:left;}
+#list dl dt img{display:block;border:1px solid #ccc;}
 #list dl dd{width:530px;float:left;margin:0 0 0 10px;padding:0 0 5px 0;line-height:150%;}
 #list dl dd a{text-decoration:none;font-size:14px;font-weight:bold;color:#369;}
 #list dl dd a:hover{color:#f60;}

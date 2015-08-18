@@ -14,37 +14,19 @@
 	<!-- list start -->
 	<div id="list">
 		<h2>当前位置&gt;<a href="list.php?id=<?php echo $this->vars['nid'];?>"><?php echo $this->vars['nnav_name'];?></a>&gt;<a href="list.php?id=<?php echo $this->vars['id'];?>"><?php echo $this->vars['nav_name'];?></a></h2>
-		<dl>
-			<dt><img alt="暂无图片" src="images/none.jpg" width="150" height="100"></dt>
-			<dd>[<strong>军事动态</strong>] <a href="javascript:;">联合利华因散布涨价信息被罚200万</a></dd>
-			<dd>日期：2011年10月10日 17:17:17 点击率：224 好评：0</dd>
-			<dd>核心提示：国家发改委发布公告称，3月下旬，联合利华(中国)有限公司有关负责人多次接受采访发表日化产品涨价言论。此行为导致日化产品涨价的信息广泛传播，增强了消费者涨价预此行为导致日化产品涨价的信息广泛传播，增强了消费者涨价预...</dd>
-		</dl>
-		<dl>
-			<dt><img alt="暂无图片" src="images/none.jpg" width="150" height="100"></dt>
-			<dd>[<strong>军事动态</strong>] <a href="javascript:;">联合利华因散布涨价信息被罚200万</a></dd>
-			<dd>日期：2011年10月10日 17:17:17 点击率：224 好评：0</dd>
-			<dd>核心提示：国家发改委发布公告称，3月下旬，联合利华(中国)有限公司有关负责人多次接受采访发表日化产品涨价言论。此行为导致日化产品涨价的信息广泛传播，增强了消费者涨价预此行为导致日化产品涨价的信息广泛传播，增强了消费者涨价预...</dd>
-		</dl>
-		<dl>
-			<dt><img alt="暂无图片" src="images/none.jpg" width="150" height="100"></dt>
-			<dd>[<strong>军事动态</strong>] <a href="javascript:;">联合利华因散布涨价信息被罚200万</a></dd>
-			<dd>日期：2011年10月10日 17:17:17 点击率：224 好评：0</dd>
-			<dd>核心提示：国家发改委发布公告称，3月下旬，联合利华(中国)有限公司有关负责人多次接受采访发表日化产品涨价言论。此行为导致日化产品涨价的信息广泛传播，增强了消费者涨价预此行为导致日化产品涨价的信息广泛传播，增强了消费者涨价预...</dd>
-		</dl>
-		<dl>
-			<dt><img alt="暂无图片" src="images/none.jpg" width="150" height="100"></dt>
-			<dd>[<strong>军事动态</strong>] <a href="javascript:;">联合利华因散布涨价信息被罚200万</a></dd>
-			<dd>日期：2011年10月10日 17:17:17 点击率：224 好评：0</dd>
-			<dd>核心提示：国家发改委发布公告称，3月下旬，联合利华(中国)有限公司有关负责人多次接受采访发表日化产品涨价言论。此行为导致日化产品涨价的信息广泛传播，增强了消费者涨价预此行为导致日化产品涨价的信息广泛传播，增强了消费者涨价预...</dd>
-		</dl>
-		<dl>
-			<dt><img alt="暂无图片" src="images/none.jpg" width="150" height="100"></dt>
-			<dd>[<strong>军事动态</strong>] <a href="javascript:;">联合利华因散布涨价信息被罚200万</a></dd>
-			<dd>日期：2011年10月10日 17:17:17 点击率：224 好评：0</dd>
-			<dd>核心提示：国家发改委发布公告称，3月下旬，联合利华(中国)有限公司有关负责人多次接受采访发表日化产品涨价言论。此行为导致日化产品涨价的信息广泛传播，增强了消费者涨价预此行为导致日化产品涨价的信息广泛传播，增强了消费者涨价预...</dd>
-		</dl>
-		<div id="page">分页</div>
+		<?php if (isset($this->vars['contents']) && $this->vars['contents'] == true) {?>
+		<?php foreach ($this->vars['contents'] as $key=>$value) { ?>
+			<dl>
+				<dt><img alt="新闻图片" src="<?php echo $value->thumbnail?>" width="150" height="100"></dt>
+				<dd>[<strong><?php echo $value->nav_name?></strong>] <a href="javascript:;"><?php echo $value->title?></a></dd>
+				<dd>日期：<?php echo $value->pubdate?> 点击率：<?php echo $value->count?> 好评：0</dd>
+				<dd><?php echo $value->info?></dd>
+			</dl>
+		<?php } ?>
+		<?php } else { ?>
+		<p class="none">该类下没有如何数据</p>
+		<?php } ?>
+		<div id="page"><?php echo $this->vars['page'];?></div>
 	</div>	
 	<!-- list end -->
 	

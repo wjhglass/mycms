@@ -41,14 +41,14 @@
 		{/if}
 	</div>
 	{if $add}
-		<form method="post" name="content">
+		<form method="post" name="content" action="?action=add">
 			<table cellspacing="0" class="content">
 				<tr><th><strong>发布一条新文档</strong></th></tr>
-				<tr><td>文档标题：<input type="text" name="title" class="text" /></td></tr>
+				<tr><td>文档标题：<input type="text" name="title" class="text" /><span class="red">[必填]</span>（* 标题2-50个字符）</td></tr>
 				<tr>
 					<td>
 						栏　　目：<select name="nav">
-									<option>--请选择一个栏目类别--</option>
+									<option value="">--请选择一个栏目类别--</option>
 									{$topNavs}
 								 </select>		
 					</td>
@@ -56,24 +56,24 @@
 				<tr>
 					<td>
 						定义属性：
-						<input type="checkbox" name="top" value="头条" />头条		
-						<input type="checkbox" name="rec" value="推荐" />推荐		
-						<input type="checkbox" name="blod" value="加粗" />加粗		
-						<input type="checkbox" name="skip" value="加粗" />跳转		
+						<input type="checkbox" name="attr[]" value="头条" />头条		
+						<input type="checkbox" name="attr[]" value="推荐" />推荐		
+						<input type="checkbox" name="attr[]" value="加粗" />加粗		
+						<input type="checkbox" name="attr[]" value="跳转" />跳转		
 					</td>
 				</tr>
-				<tr><td>TAG 标签：<input type="text" name="tag" class="text" /></td></tr>
-				<tr><td>关  键  字：<input type="text" name="keyword" class="text" /></td></tr>
+				<tr><td>TAG 标签：<input type="text" name="tag" class="text" />（* 每个标签隔开，总长不得大于30位）</td></tr>
+				<tr><td>关  键  字：<input type="text" name="keyword" class="text" />（* 每个关键字隔开，总长不得大于30位）</td></tr>
 				<tr><td>缩  略  图：<input type="text" name="thumbnail" class="text" readonly="readonly" /><input type="button" value="上传缩略图" onclick="centerWindow('../templates/upfile.html','upfile','400','100');" />
-					<img name="pic" style="display:none;" />
+					<img name="pic" style="display:none;" />（* 缩略图必须是gif，jpg或png，且不得大于200KB）
 				</td></tr>
-				<tr><td>文章来源：<input type="text" name="source" class="text" /></td></tr>
-				<tr><td>作　　者：<input type="text" name="author" class="text" /></td></tr>
+				<tr><td>文章来源：<input type="text" name="source" class="text" />（* 文章来源不得大于100位）</td></tr>
+				<tr><td>作　　者：<input type="text" name="author" value="{$author}" class="text" />（* 作者不得大于20位）</td></tr>
 				<tr>
-					<td><span class="middle">内容摘要：</span><textarea name="info" placeholder="请输入摘要"></textarea></td>
+					<td><span class="middle">内容摘要：</span><textarea name="info" placeholder="请输入摘要"></textarea><span class="middle">（* 内容摘要不得大于200位）</span></td>
 				</tr>
 				<tr class="ckeditor">
-					<td><textarea id="taContent" name="content" placeholder="请输入文档的详细信息" class="ckeditor" ></textarea></td>
+					<td><textarea id="taContent" name="content" placeholder="请输入文档的详细信息" class="ckeditor" ></textarea>（* 详细信息不得为空）</td>
 				</tr>
 				<tr>
 					<td>
@@ -87,10 +87,10 @@
 					<td>
 						文档排序：<select name="sort">
 									<option value="">默认排序</option>
-									<option value="">置顶一天</option>
-									<option value="">置顶一周</option>
-									<option value="">置顶一月</option>
-									<option value="">置顶一年</option>
+									<option value="1">置顶一天</option>
+									<option value="2">置顶一周</option>
+									<option value="3">置顶一月</option>
+									<option value="4">置顶一年</option>
 								 </select>
 						　　　　消费金币：<input type="text" name="gold" value="0" class="text small" />
 					</td>
@@ -99,20 +99,20 @@
 					<td>
 						阅读权限：<select name="limit">
 									<option value="">开放浏览</option>
-									<option value="">初级会员</option>
-									<option value="">中级会员</option>
-									<option value="">高级会员</option>
-									<option value="">VIP会员</option>
+									<option value="1">初级会员</option>
+									<option value="2">中级会员</option>
+									<option value="3">高级会员</option>
+									<option value="4">VIP会员</option>
 								 </select>
 						　　　　标题颜色：<select name="color">
 											<option value="">默认颜色</option>
-											<option value="" style="color:red;">红色</option>
-											<option value="" style="color:blue;">蓝色</option>
-											<option value="" style="color:orange;">橙色</option>
+											<option value="red" style="color:red;">红色</option>
+											<option value="blue" style="color:blue;">蓝色</option>
+											<option value="orange" style="color:orange;">橙色</option>
 										</select>
 					</td>
 				</tr>
-				<tr><td><input type="submit" name="发布文档" /><input type="reset" name="重置" /></td></tr>
+				<tr><td><input type="submit" name="send" onclick="return checkAddContent();" value="发布文档" /> <input type="reset" name="重置" /></td></tr>
 				<tr><td></tr>
 			</table>
 		</form>

@@ -87,6 +87,19 @@ class Tool {
 	}
 	
 	/**
+	 * 将html字符串转换成html标签
+	 * 
+	 * @author 吴金华
+	 * @version 1.0
+	 * @since 2015-8-18
+	 * @param unknown $_str        	
+	 * @return string
+	 */
+	static public function unHtml($_str) {
+		return htmlspecialchars_decode ( $_str );
+	}
+	
+	/**
 	 * 数据库输入过滤
 	 *
 	 * @author 吴金华
@@ -118,7 +131,7 @@ class Tool {
 			}
 		}
 		
-		$retStr = stripslashes(substr ( $html, 0, strlen ( $html ) - 1 ));
+		$retStr = stripslashes ( substr ( $html, 0, strlen ( $html ) - 1 ) );
 		return $retStr;
 	}
 	

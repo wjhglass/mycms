@@ -17,8 +17,8 @@
 		<?php if (isset($this->vars['contents']) && $this->vars['contents'] == true) {?>
 		<?php foreach ($this->vars['contents'] as $key=>$value) { ?>
 			<dl>
-				<dt><img alt="新闻图片" src="<?php echo $value->thumbnail?>" width="150" height="100"></dt>
-				<dd>[<strong><?php echo $value->nav_name?></strong>] <a href="javascript:;"><?php echo $value->title?></a></dd>
+				<dt><a href="details.php?id=<?php echo $value->id?>" target="_blank"><img alt="新闻图片" src="<?php echo $value->thumbnail?>" width="150" height="100"></a></dt>
+				<dd>[<strong><?php echo $value->nav_name?></strong>] <a href="details.php?id=<?php echo $value->id?>" target="_blank"><?php echo $value->title?></a></dd>
 				<dd>日期：<?php echo $value->pubdate?> 点击率：<?php echo $value->count?> 好评：0</dd>
 				<dd><?php echo $value->info?></dd>
 			</dl>

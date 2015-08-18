@@ -33,6 +33,32 @@ class ContentModel extends Model {
 	}
 	
 	/**
+	 * 获取单条文档内容
+	 * @author 吴金华
+	 * @version 1.0
+	 * @since 2015-8-18
+	 */
+	public function load() {
+		$sql = <<<sql
+		SELECT
+			id,
+			title,
+			nav,
+			info,
+			content,
+			count,
+			source,
+			author,
+			pubdate
+		FROM
+			mycms_content
+		WHERE id='$this->id'
+		LIMIT 1
+sql;
+		return parent::one($sql);
+	}
+	
+	/**
 	 * 获取文档的总记录数
 	 *
 	 * @author 吴金华
@@ -133,6 +159,7 @@ LEFT JOIN
 ON
 	a.nav=b.id
 WHERE a.nav in ($nav)
+ORDER BY a.pubdate DESC
 $this->limit
 sql;
 		return parent::all ( $sql );

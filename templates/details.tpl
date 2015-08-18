@@ -4,44 +4,25 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>CMS内容管理系统</title>
 	<link rel="stylesheet" type="text/css" href="style/basic.css" />
-	<link rel="stylesheet" type="text/css" href="style/list.css" />
+	<link rel="stylesheet" type="text/css" href="style/details.css" />
 	<link rel="stylesheet" type="text/css" href="style/magic.css" />
 </head>
 <body>
 	<!--导入头部文件-->
 	{include file='header.tpl'}
 	
-	<!-- list start -->
-	<div id="list">
-		<h2>当前位置&gt;<a href="list.php?id={$nid}">{$nnav_name}</a>&gt;<a href="list.php?id={$id}">{$nav_name}</a></h2>
-		{if $contents}
-		{foreach $contents(key,value)}
-			<dl>
-				<dt><a href="details.php?id={@value->id}" target="_blank"><img alt="新闻图片" src="{@value->thumbnail}" width="150" height="100"></a></dt>
-				<dd>[<strong>{@value->nav_name}</strong>] <a href="details.php?id={@value->id}" target="_blank">{@value->title}</a></dd>
-				<dd>日期：{@value->pubdate} 点击率：{@value->count} 好评：0</dd>
-				<dd>{@value->info}</dd>
-			</dl>
-		{/foreach}
-		{else}
-		<p class="none">该类下没有如何数据</p>
-		{/if}
-		<div id="page">{$page}</div>
+	<!-- details start -->
+	<div id="details">
+		<h2>当前位置 &gt; {$nav}</h2>
+		<h3>{$titlec}</h3>
+		<div class="d1">时间：{$pubdate} 来源：{$source} 作者：{$author} 点击量：{$count} 次</div>
+		<div class="d2">{$info}</div>
+		<div class="d3">{$content}</div>
 	</div>	
-	<!-- list end -->
+	<!-- details end -->
 	
 	<!-- sidebar start -->
 	<div id="sidebar">
-		<div class="s-nav">
-			<h2>子栏目列表</h2>
-			{if $childNavs}
-				{foreach $childNavs(key,value)}
-					<strong><a href="list.php?id={@value->id}">{@value->nav_name}</a></strong>
-				{/foreach}
-			{else}
-			<span>该栏目没有子类</span>
-			{/if}
-		</div>
 		<div class="right">
 			<h2>本类推荐</h2>
 			<ul>

@@ -30,7 +30,9 @@ class ListAction extends Action {
 		if (isset($_GET['id'])) {
 			parent::__construct($this->tmp, new ContentModel());
 			$this->model->id = $_GET['id'];
-			$navids = $this->model->getNavChild();
+			$nav = new NavModel();
+			$nav->id = $_GET['id'];
+			$navids = $nav->getNavChild();
 			if ($navids) {
 				$this->model->nav = Tool::objArrOfStr($navids,'id');
 			} else {

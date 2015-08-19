@@ -44,9 +44,13 @@ class ContentModel extends Model {
 			id,
 			title,
 			nav,
+			tag,
+			keyword,
+			thumbnail,
 			info,
 			content,
 			count,
+			gold,
 			source,
 			author,
 			pubdate
@@ -118,23 +122,6 @@ sql;
 	}
 	
 	/**
-	 * 获取导航下的子导航
-	 * @author 吴金华
-	 * @version 1.0
-	 * @since 2015-8-18
-	 */
-	public function getNavChild() {
-		$sql = <<<sql
-SELECT
-	id
-FROM
-	mycms_nav
-WHERE pid='$this->id'
-sql;
-		return parent::all( $sql );
-	}
-	
-	/**
 	 * 根据导航获取所有的文档列表
 	 * @author 吴金华
 	 * @version 1.0
@@ -146,6 +133,9 @@ sql;
 SELECT
 	a.id,
 	a.title,
+	a.title t,
+	a.attr,
+	a.nav,
 	a.pubdate,
 	a.info,
 	a.thumbnail,

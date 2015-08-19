@@ -205,6 +205,39 @@ sql;
 	}
 	
 	/**
+	 * 获取导航下的子导航
+	 * @author 吴金华
+	 * @version 1.0
+	 * @since 2015-8-18
+	 */
+	public function getNavChild() {
+		$sql = <<<sql
+SELECT
+	id
+FROM
+	mycms_nav
+WHERE pid='$this->id'
+sql;
+		return parent::all( $sql );
+	}
+	
+	/**
+	 * 获取非主类的id
+	 * @author 吴金华
+	 * @version 1.0
+	 * @since 2015-8-19
+	 */
+	public function getNavChildIds() {
+		$sql = "
+				SELECT
+					id
+				FROM
+					mycms_nav
+				WHERE pid is not null";
+		return parent::all( $sql );
+	}
+	
+	/**
 	 * 添加导航
 	 *
 	 * @author 吴金华

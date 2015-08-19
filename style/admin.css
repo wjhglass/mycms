@@ -69,6 +69,8 @@ ul,ol{list-style:none;}
 #page a:hover{color:#fff;border:1px solid #000;background:#000;text-decoration:none;}
 #page span{border:1px solid #eee;padding:2px 5px;}
 #page span.me{color:#fff;border:1px solid #000;background:#000;}
+#page select.select{width:120px;background:#fff;border:1px solid #ccc;}
+#page select.select optgroup{font-style:normal;}
 /*page end*/
 
 /*adminLogin start*/

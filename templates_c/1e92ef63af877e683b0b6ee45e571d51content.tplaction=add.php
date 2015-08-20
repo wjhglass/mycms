@@ -132,6 +132,7 @@
 	<?php if (isset($this->vars['edit']) && $this->vars['edit'] == true) {?>
 		<form method="post" name="content" action="?action=edit">
 			<input type="hidden" name="id" value="<?php echo $this->vars['id'];?>" />
+			<input type="hidden" value="<?php echo $this->vars['prev_url'];?>" name="prev_url" />
 			<table cellspacing="0" class="content">
 				<tr><th><strong>发布一条新文档</strong></th></tr>
 				<tr><td>文档标题：<input type="text" name="title" class="text" value="<?php echo $this->vars['t'];?>" /><span class="red">[必填]</span>（* 标题2-50个字符）</td></tr>
@@ -164,9 +165,8 @@
 				<tr>
 					<td>
 						评论选项：
-						<input type="radio" name="commend" value="1" checked="checked" />允许评论	
-						<input type="radio" name="commend" value="0" />禁止评论	
-						　　　　浏览次数：<input type="text" name="count" value="<?php echo $this->vars['count'];?>" class="text small" />
+						<?php echo $this->vars['commend'];?>
+						　　　　 浏览次数：<input type="text" name="count" value="<?php echo $this->vars['count'];?>" class="text small" />
 					</td>
 				</tr>
 				<tr>
@@ -177,17 +177,11 @@
 				</tr>
 				<tr>
 					<td>
-						阅读权限：<select name="limit">
-									<option value="0">开放浏览</option>
-									<option value="1">初级会员</option>
-									<option value="2">中级会员</option>
-									<option value="3">高级会员</option>
-									<option value="4">VIP会员</option>
-								 </select>
+						阅读权限：<?php echo $this->vars['limit'];?>
 						　　　　标题颜色：<?php echo $this->vars['color'];?>
 					</td>
 				</tr>
-				<tr><td><input type="submit" name="send" onclick="return checkAddContent();" value="发布文档" /> <input type="reset" name="重置" /></td></tr>
+				<tr><td><input type="submit" name="send" onclick="return checkAddContent();" value="修改文档" /> <input type="reset" name="重置" /></td></tr>
 				<tr><td></tr>
 			</table>
 		</form>

@@ -213,4 +213,48 @@ sql;
 				)";
 		return parent::aud ( $sql );
 	}
+	
+	/**
+	 * 编辑文档
+	 *
+	 * @author 吴金华
+	 * @version 1.0
+	 * @since 2015-8-20
+	 */
+	public function modify() {
+		$sql = "
+			UPDATE mycms_content
+			SET
+				title='$this->title',
+				nav='$this->nav',
+				attr='$this->attr',
+				tag='$this->tag',
+				keyword='$this->keyword',
+				thumbnail='$this->thumbnail',
+				source='$this->source',
+				author='$this->author',
+				info='$this->info',
+				content='$this->content',
+				commend='$this->commend',
+				sort='$this->sort',
+				`limit`='$this->limit',
+				color='$this->color',
+				count='$this->count',
+				gold='$this->gold',
+				midifydate=NOW()
+			WHERE id='$this->id'";
+		return parent::aud ( $sql );
+	}
+	
+	/**
+	 * 删除文档
+	 *
+	 * @author 吴金华
+	 * @version 1.0
+	 * @since 2015-8-20
+	 */
+	public function delete() {
+		$sql = "DELETE FROM mycms_content WHERE id='$this->id' LIMIT 1";
+		return parent::aud ( $sql );
+	}
 }

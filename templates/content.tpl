@@ -98,7 +98,7 @@
 				<tr>
 					<td>
 						文档排序：<select name="sort">
-									<option value="">默认排序</option>
+									<option value="0">默认排序</option>
 									<option value="1">置顶一天</option>
 									<option value="2">置顶一周</option>
 									<option value="3">置顶一月</option>
@@ -110,7 +110,7 @@
 				<tr>
 					<td>
 						阅读权限：<select name="limit">
-									<option value="">开放浏览</option>
+									<option value="0">开放浏览</option>
 									<option value="1">初级会员</option>
 									<option value="2">中级会员</option>
 									<option value="3">高级会员</option>
@@ -145,11 +145,7 @@
 				</tr>
 				<tr>
 					<td>
-						定义属性：
-						<input type="checkbox" name="attr[]" value="头条" />头条		
-						<input type="checkbox" name="attr[]" value="推荐" />推荐		
-						<input type="checkbox" name="attr[]" value="加粗" />加粗		
-						<input type="checkbox" name="attr[]" value="跳转" />跳转		
+						定义属性：{$attr}
 					</td>
 				</tr>
 				<tr><td>TAG 标签：<input type="text" name="tag" class="text" value="{$tag}" />（* 每个标签隔开，总长不得大于30位）</td></tr>
@@ -168,38 +164,20 @@
 				<tr>
 					<td>
 						评论选项：
-						<input type="radio" name="commend" value="1" checked="checked" />允许评论	
-						<input type="radio" name="commend" value="0" />禁止评论	
-						　　　　浏览次数：<input type="text" name="count" value="{$count}" class="text small" />
+						{$commend}
+						　　　　 浏览次数：<input type="text" name="count" value="{$count}" class="text small" />
 					</td>
 				</tr>
 				<tr>
 					<td>
-						文档排序：<select name="sort">
-									<option value="">默认排序</option>
-									<option value="1">置顶一天</option>
-									<option value="2">置顶一周</option>
-									<option value="3">置顶一月</option>
-									<option value="4">置顶一年</option>
-								 </select>
+						文档排序：{$sort}
 						　　　　消费金币：<input type="text" name="gold" value="{$gold}" class="text small" />
 					</td>
 				</tr>
 				<tr>
 					<td>
-						阅读权限：<select name="limit">
-									<option value="">开放浏览</option>
-									<option value="1">初级会员</option>
-									<option value="2">中级会员</option>
-									<option value="3">高级会员</option>
-									<option value="4">VIP会员</option>
-								 </select>
-						　　　　标题颜色：<select name="color">
-											<option value="">默认颜色</option>
-											<option value="red" style="color:red;">红色</option>
-											<option value="blue" style="color:blue;">蓝色</option>
-											<option value="orange" style="color:orange;">橙色</option>
-										</select>
+						阅读权限：{$limit}
+						　　　　标题颜色：{$color}
 					</td>
 				</tr>
 				<tr><td><input type="submit" name="send" onclick="return checkAddContent();" value="发布文档" /> <input type="reset" name="重置" /></td></tr>

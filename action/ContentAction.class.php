@@ -168,6 +168,11 @@ class ContentAction extends Action {
 		$this->tmp->assign ( 'gold', $obj->gold );
 		$this->tmp->assign ( 'count', $obj->count );
 		$this->tmp->assign ( 'topNavs', $this->makeNav($obj->nav) );
+		$this->tmp->assign ( 'attr', $this->makeAttr($obj->attr) );
+		$this->tmp->assign ( 'color', $this->makeColor($obj->color) );
+		$this->tmp->assign ( 'sort', $this->makeSort($obj->sort) );
+		$this->tmp->assign ( 'limit', $this->makeLimit($obj->limit) );
+		$this->tmp->assign ( 'commend', $this->makeCommend($obj->commend) );
 		$this->tmp->assign ( 'prev_url', PREV_URL );
 	}
 	
@@ -209,5 +214,116 @@ class ContentAction extends Action {
 			$html .= '</optgroup>';
 		}
 		return $html;
+	}
+	
+	/**
+	 * 创建属性的多选框
+	 * @author 吴金华
+	 * @version 1.0
+	 * @since 2015-8-20
+	 * @param unknown $n
+	 * @return string
+	 */
+	private function makeAttr($attr) {
+		$attrHTML = '';
+		$attrArr = array('头条', '推荐', '加粗', '跳转');
+		$attrs = explode(',', $attr);
+		$attrNo = array_diff($attrArr, $attrs);
+		if ($attrs[0] != '无属性') {
+			foreach ($attrs as $value) {
+				$attrHTML .= '<input type="checkbox" checked name="attr[]" value="'.$value.'" />'.$value;
+			}
+		}
+		foreach ($attrNo as $value) {
+			$attrHTML .= '<input type="checkbox" name="attr[]" value="'.$value.'" />'.$value;
+		}
+		return $attrHTML;
+	}
+	
+	/**
+	 * 创建颜色的多选框
+	 * @author 吴金华
+	 * @version 1.0
+	 * @since 2015-8-20
+	 * @param unknown $color
+	 * @return string
+	 */
+	private function makeColor($color) {
+		$colorArr = array(''=>'默认颜色', 'red'=>'红色', 'blue'=>'蓝色', 'orange'=>'橙色');
+		$colorHTML = '<select name="color">';
+		foreach ($colorArr as $key=>$value) {
+			if ($key == $color) {
+				$colorHTML .= '<option value="'.$key.'" selected style="color:'.$key.';">'.$value.'</option>';
+			} else {
+				$colorHTML .= '<option value="'.$key.'" style="color:'.$key.';">'.$value.'</option>';
+			}
+		}
+		$colorHTML .= '</select>';
+		return $colorHTML;
+	}
+	
+	/**
+	 * 创建文档排序的多选框
+	 * @author 吴金华
+	 * @version 1.0
+	 * @since 2015-8-20
+	 * @param unknown $sort
+	 * @return string
+	 */
+	private function makeSort($sort) {
+		$sortArr = array('0'=>'默认排序', '1'=>'置顶一天', '2'=>'置顶一周', '3'=>'置顶一月', '4'=>'置顶一年');
+		$sortHTML = '<select name="sort">';
+		foreach ($sortArr as $key=>$value) {
+			if ($key == $sort) {
+				$sortHTML .= '<option value="'.$key.'" selected style="color:'.$key.';">'.$value.'</option>';
+			} else {
+				$sortHTML .= '<option value="'.$key.'" style="color:'.$key.';">'.$value.'</option>';
+			}
+		}
+		$sortHTML .= '</select>';
+		return $sortHTML;
+	}
+	
+	/**
+	 * 创建文档排序的多选框
+	 * @author 吴金华
+	 * @version 1.0
+	 * @since 2015-8-20
+	 * @param unknown $sort
+	 * @return string
+	 */
+	private function makeLimit($limit) {
+		$limitArr = array('0'=>'开放浏览', '1'=>'初级会员', '2'=>'中级会员', '3'=>'高级会员', '4'=>'VIP会员');
+		$limitHTML = '<select name="limit">';
+		foreach ($limitArr as $key=>$value) {
+			if ($key == $limit) {
+				$limitHTML .= '<option value="'.$key.'" selected style="color:'.$key.';">'.$value.'</option>';
+			} else {
+				$limitHTML .= '<option value="'.$key.'" style="color:'.$key.';">'.$value.'</option>';
+			}
+		}
+		$limitHTML .= '</select>';
+		return $limitHTML;
+	}
+	
+	/**
+	 * 创建文档排序的多选框
+	 * @author 吴金华
+	 * @version 1.0
+	 * @since 2015-8-20
+	 * @param unknown $commend
+	 * @return string
+	 */
+	private function makeCommend($commend) {
+		$commendArr = array('1'=>'允许评论', '0'=>'禁止评论');
+		$commendHTML = '';
+		foreach ($commendArr as $key=>$value) {
+			if ($key == $commend) {
+				$commendHTML .= '<input type="radio" name="commend" value="'.$key.'" checked="checked" />'.$value;
+			} else {
+				$commendHTML .= '<input type="radio" name="commend" value="'.$key.'" />'.$value;
+			}
+		}
+		return $commendHTML;
 	}
 }

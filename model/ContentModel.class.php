@@ -44,15 +44,20 @@ class ContentModel extends Model {
 			id,
 			title,
 			nav,
+			attr,
 			tag,
 			keyword,
 			thumbnail,
 			info,
+			commend,
 			content,
 			count,
 			gold,
 			source,
 			author,
+			color,
+			sort,
+			`limit`,
 			pubdate
 		FROM
 			mycms_content

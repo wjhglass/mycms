@@ -15,3 +15,4 @@ CKEDITOR.config.skin='kama'
 header ( "Content-type: text/html; charset=utf-8" );
 echo md5('111111').'<br />';
 echo $_POST['content'].'<br />';
+

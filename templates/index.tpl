@@ -20,7 +20,7 @@
 			<img width="68" height="24" alt="验证码" src="images/vdimgck.png" />
 			<p>
 				<input type="submit" name="send" value="登录" class="submit" />
-				<a href="register.php">注册会员</a>
+				<a href="register.php?action=reg">注册会员</a>
 				<a href="javascript:;">忘记密码？</a>
 			</p>
 		</form>

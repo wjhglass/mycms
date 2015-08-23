@@ -58,6 +58,18 @@ class Validate {
 	}
 	
 	/**
+	 * 验证电子邮件
+	 * @author 吴金华
+	 * @version 1.0
+	 * @since 2015-8-23
+	 * @param unknown $data
+	 * @return boolean
+	 */
+	static public function checkEmail($data) {
+		return preg_match('/^[\w\-\.]+@[\w\-\.]+(\.\w+)+$/',$data);
+	}
+	
+	/**
 	 * 判断数据是否是数字
 	 * @author 吴金华
 	 * @version 1.0

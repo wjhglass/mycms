@@ -22,6 +22,9 @@ function __autoload($className) {
 	}
 }
 
+// 记录不缓存的页面
+$cache = new Cache(array('code', 'ckeup', 'static', 'upload'));
+
 // 实例化模版类
 $tmp = new Templates ();
 

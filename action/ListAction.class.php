@@ -44,6 +44,13 @@ class ListAction extends Action {
 			$contents = $this->model->listContentByNav();
 			$contents = Tool::subStr($contents,'info',120,'utf-8');
 			$contents = Tool::subStr($contents,'title',35,'utf-8');
+			if (IS_CACHE) {
+				if ($contents) {
+					foreach ($contents as $content) {
+						$content->count = '<script type="text/javascript">getContentCount();</script>';
+					}
+				}
+			}
 			$this->tmp->assign('contents', $contents );
 		} else {
 			Tool::alertBack('非法操作');

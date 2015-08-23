@@ -20,5 +20,5 @@ define ( 'MARK', ROOT_PATH . '/images/zqc.jpg' ); // 水印图片
 define ( 'TPL_DIR', ROOT_PATH . '/templates/' ); // 模板文件目录
 define ( 'TPL_C_DIR', ROOT_PATH . '/templates_c/' ); // 编译文件目录
 define ( 'CACHE', ROOT_PATH . '/chache/' ); // 缓存文件目录
-define ( 'ADMIN_CACHE', false ); // 后台缓存按钮，不得开启，开启后，后台功能就会有误
-define ( 'FRONT_CACHE', true );										//前台缓存按钮，测试的时候关闭，运行的时候开启
+// define ( 'ADMIN_CACHE', false ); // 后台缓存按钮，不得开启，开启后，后台功能就会有误
+// define ( 'FRONT_CACHE', false );										//前台缓存按钮，测试的时候关闭，运行的时候开启

@@ -69,7 +69,7 @@ class Tool {
 	static public function tplName() {
 		$str = explode ( '/', $_SERVER ["SCRIPT_NAME"] );
 		$str = explode ( '.', $str [count ( $str ) - 1] );
-		return $str [0] . '.tpl';
+		return $str [0];
 	}
 	
 	/**

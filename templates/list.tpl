@@ -16,6 +16,7 @@
 		<h2>当前位置&gt;<a href="list.php?id={$nid}">{$nnav_name}</a>&gt;<a href="list.php?id={$id}">{$nav_name}</a></h2>
 		{if $contents}
 		{foreach $contents(key,value)}
+			<script type="text/javascript" src="config/static.php?id={@value->id}&type=list"></script>
 			<dl>
 				<dt><a href="details.php?id={@value->id}" target="_blank"><img alt="新闻图片" src="{@value->thumbnail}" width="150" height="100"></a></dt>
 				<dd>[<strong>{@value->nav_name}</strong>] <a href="details.php?id={@value->id}" target="_blank">{@value->title}</a></dd>

@@ -72,7 +72,7 @@ class Templates {
 		
 		include $parfile;
 		
-		if (FRONT_CACHE) {
+		if (IS_CACHE) {
 			// 获取缓冲区中的数据，并且创建缓存文件
 			file_put_contents ( $cachefile, ob_get_contents () );
 			// 清楚缓冲区
@@ -106,7 +106,7 @@ class Templates {
 		$cachefile = CACHE . md5 ( $tplname ) . $tplname . '.html';
 		
 		// 其余缓存后如果已经编译不在重新编译，直接载入缓存即可
-		if (FRONT_CACHE) {
+		if (IS_CACHE) {
 			if (file_exists ( $cachefile ) && file_exists ( $parfile )) {
 				// 判断编译文件没有修改过
 				if (filemtime ( $parfile ) >= filemtime ( $tplfile ) && filemtime ( $cachefile ) >= filemtime ( $parfile )) {

@@ -41,7 +41,7 @@ class DetailsAction extends Action {
 			$this->tmp->assign('info',$content->info);
 			$this->tmp->assign('content',Tool::unHtml($content->content));
 			$this->getNav($content->nav);
-			if (FRONT_CACHE) {
+			if (IS_CACHE) {
 				$this->tmp->assign('count','<script type="text/javascript">getContentCount();</script>');
 			} else {
 				$this->tmp->assign('count',$content->count);

@@ -60,7 +60,7 @@ class Tool {
 	
 	/**
 	 * 将当前文件转换成.tpl文件名
-	 * 
+	 *
 	 * @author 吴金华
 	 * @version 1.0
 	 * @since 2015-8-23
@@ -163,10 +163,14 @@ class Tool {
 	 */
 	static public function subStr($object, $field, $length, $encoding) {
 		if ($object) {
-			foreach ( $object as $value ) {
-				if (mb_strlen ( $value->$field, $encoding ) > $length) {
-					$value->$field = mb_substr ( $value->$field, 0, $length, $encoding ) . '...';
+			if (is_array ( $object )) {
+				foreach ( $object as $value ) {
+					if (mb_strlen ( $value->$field, $encoding ) > $length) {
+						$value->$field = mb_substr ( $value->$field, 0, $length, $encoding ) . '...';
+					}
 				}
+			} else {
+				$object = mb_substr ( $object, 0, $length, $encoding );
 			}
 		}
 		return $object;

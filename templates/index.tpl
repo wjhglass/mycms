@@ -6,23 +6,39 @@
 	<link rel="stylesheet" type="text/css" href="style/basic.css" />
 	<link rel="stylesheet" type="text/css" href="style/index.css" />
 	<link rel="stylesheet" type="text/css" href="style/magic.css" />
+	<script type="text/javascript" src="config/static.php?type=index"></script>
 </head>
 <body>
 	<!--导入头部文件-->
 	{include file='header.tpl'}
 	<!--user start-->
 	<div class="user">
-		<h2>会员信息</h2>
-		<form method="post" action="register.php?action=login" name="login">
-			<label>用户名：<input type="text" name="username" class="text" /></label>
-			<label>密　码：<input type="password" name="password" class="text" /></label>
-			<label class="yzm">验证码：<input type="text" name="code" class="text code" /> <img src="config/code.php" width="130" height="50" alt="验证码" onclick="javascript:this.src = 'config/code.php?tm=' + Math.random();" class="code" /></label>
-			<p>
-				<input type="submit" name="send" value="登录" class="submit" onclick="return checkLogin();" />
-				<a href="register.php?action=reg">注册会员</a>
-				<a href="javascript:;">忘记密码？</a>
-			</p>
-		</form>
+		{if $cache}
+		{$member}
+		{else}
+			{if $login}
+				<h2>会员登录</h2>
+				<form method="post" action="register.php?action=login" name="login">
+					<label>用户名：<input type="text" name="username" class="text" /></label>
+					<label>密　码：<input type="password" name="password" class="text" /></label>
+					<label class="yzm">验证码：<input type="text" name="code" class="text code" /> <img src="config/code.php" width="130" height="50" alt="验证码" onclick="javascript:this.src = 'config/code.php?tm=' + Math.random();" class="code" /></label>
+					<p>
+						<input type="submit" name="send" value="登录" class="submit" onclick="return checkLogin();" />
+						<a href="register.php?action=reg">注册会员</a>
+						<a href="javascript:;">忘记密码？</a>
+					</p>
+				</form>
+			{else}
+				<h2>会员信息</h2>
+				<div class="a">您好，<strong>{$username}</strong>欢迎光临本系统！</div>
+				<div class="b">
+					<img src="images/{$face}" alt="{$username}" />
+					<a href="###">个人中心</a>
+					<a href="###">我的评论</a>
+					<a href="register.php?action=logout">退出登录</a>
+				</div>
+			{/if}
+		{/if}
 		<h3>最近登录会员<span>───────────────────</span></h3>
 		<dl>
 			<dt><img width="72" height="72" alt="头像" src="images/01.gif" /></dt>

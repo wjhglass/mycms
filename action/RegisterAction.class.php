@@ -129,8 +129,8 @@ class RegisterAction extends Action {
 			if (!!$user = $this->model->validate()) {
 				$cookie = new Cookie('username',$user->username,$_POST['time']);
 				$cookie->setCookie();
-// 				$cookie = new Cookie('face',$user->face,$_POST['time']);
-// 				$cookie->setCookie();
+				$cookie = new Cookie('face',$user->face,$_POST['time']);
+				$cookie->setCookie();
 				Tool::alertLocation(null, './');
 			} else {
 				Tool::alertBack('用户名或密码错误！');

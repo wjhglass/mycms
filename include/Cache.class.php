@@ -36,6 +36,8 @@ class Cache {
 				break;
 			case 'header' :
 				$this->header();
+			case 'index' :
+				$this->index();
 				break;
 		}
 	}
@@ -98,7 +100,7 @@ class Cache {
 	 * @version 1.0
 	 * @since 2015-8-23
 	 */
-	public function header() {
+	private function header() {
 		$cookie = new Cookie('username');
 		if ($cookie->getCookie()) {
 			echo "
@@ -114,5 +116,53 @@ class Cache {
 				";
 		}
 	
+	}
+	
+	/**
+	 * 首页缓存
+	 * @author 吴金华
+	 * @version 1.0
+	 * @since 2015-8-23
+	 */
+	private function index() {
+		$cookie = new Cookie ( 'username' );
+		$username = $cookie->getCookie ();
+		$cookie = new Cookie ( 'face' );;
+		$face = $cookie->getCookie ();
+		$menber = '';
+		if ($username && $face) {
+			$menber .= '<h2>会员信息</h2>';
+			$menber .= '<div class="a">您好，<strong>'.$username.'</strong>欢迎光临本系统！</div>';
+			$menber .= '<div class="b">';
+			$menber .= '<img src="images/'.$face.'" alt="'.$username.'" />';
+			$menber .= '<a href="###">个人中心</a>';
+			$menber .= '<a href="###">我的评论</a>';
+			$menber .= '<a href="register.php?action=logout">退出登录</a>';
+			$menber .= '</div>';
+			
+			echo "
+				function getIndexLogin() {
+					document.write('$menber');
+				}
+			";
+		}
+		else {
+			$menber .= '<h2>会员登录</h2>';
+			$menber .= '<form method="post" action="register.php?action=login" name="login">';
+			$menber .= '<label>用户名：<input type="text" name="username" class="text" /></label>';
+			$menber .= '<label>密　码：<input type="password" name="password" class="text" /></label>';
+			$menber .= '<label class="yzm">验证码：<input type="text" name="code" class="text code" /> <img src="config/code.php" width="130" height="50" alt="验证码" onclick=this.src="config/code.php?tm=" + Math.random(); class="code" /></label>';
+			$menber .= '<p>';
+			$menber .= '<input type="submit" name="send" value="登录" class="submit" onclick="return checkLogin();" />';
+			$menber .= '<a href="register.php?action=reg">注册会员</a>';
+			$menber .= '<a href="javascript:;">忘记密码？</a>';
+			$menber .= '</p>';
+			$menber .= '</form>';
+			echo "
+				function getIndexLogin() {
+					document.write('$menber');
+				}
+			";
+		}
 	}
 }

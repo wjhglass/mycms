@@ -11,6 +11,11 @@
 .user form p input.submit{width:45px;height:20px;}
 .user form p a{color:green;text-decoration:none;}
 .user form p a:hover{text-decoration:underline;}
+.user div.a {width:80%;margin:10px auto;border:1px solid #eee;background:#fffffc;height:22px;line-height:22px;text-align:center;border-right:none;border-left:none;}
+.user div.a strong {color:#ff6600;}
+.user div.b {width:70%;margin:0 auto;padding:15px 0 0 0;height:85px;}
+.user div.b img {display:block;float:left;}
+.user div.b a {display:block;float:right;width:80px;padding:8px 0 0 0;color:green;letter-spacing:2px;}
 .user h3{font-size:12px;padding:5px 10px;}
 .user h3 span{color:#ccc;}
 .user dl{width:72px;float:left;padding:0 0 2px 12px;}

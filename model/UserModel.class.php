@@ -106,7 +106,8 @@ class UserModel extends Model {
 		$sql = "
 			SELECT 
 				username,
-				password
+				password,
+				face
 			FROM 
 				mycms_user 
 			WHERE 

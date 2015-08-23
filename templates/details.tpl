@@ -6,6 +6,7 @@
 	<link rel="stylesheet" type="text/css" href="style/basic.css" />
 	<link rel="stylesheet" type="text/css" href="style/details.css" />
 	<link rel="stylesheet" type="text/css" href="style/magic.css" />
+	<script type="text/javascript" src="config/static.php?id={$id}&type=details"></script>
 </head>
 <body>
 	<!--导入头部文件-->

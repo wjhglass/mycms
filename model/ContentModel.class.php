@@ -257,4 +257,20 @@ sql;
 		$sql = "DELETE FROM mycms_content WHERE id='$this->id' LIMIT 1";
 		return parent::aud ( $sql );
 	}
+	
+	/**
+	 * 修改文档的点击量
+	 * @author 吴金华
+	 * @version 1.0
+	 * @since 2015-8-21
+	 */
+	public function updateCount() {
+		$sql = "UPDATE 
+					mycms_content 
+				SET 
+					count=count+1 
+				WHERE 
+					id='$this->id' LIMIT 1";
+		return parent::aud ( $sql );
+	}
 }

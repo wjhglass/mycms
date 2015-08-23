@@ -39,9 +39,57 @@ class Templates {
 	
 	/**
 	 * 显示模版文件中的内容
+	 * @author 吴金华
+	 * @version 1.0
+	 * @since 2015-8-21
+	 * @param unknown $tplname
 	 */
 	public function display($tplname) {
 		$tmp = $this;
+		$tplfile = TPL_DIR . $tplname;
+		// 判断模版是否存在
+		if (! file_exists ( $tplfile )) {
+			exit ( 'ERROR：模版文件不存在！' );
+		}
+		
+		if (!empty($_SERVER['QUERY_STRING'])) {
+			$tplname .= $_SERVER['QUERY_STRING'];
+		}
+
+		// 生成编译文件
+		$parfile = TPL_C_DIR . md5 ( $tplname ) . $tplname . '.php';
+		// 缓存编译文件
+		$cachefile = CACHE . md5 ( $tplname ) . $tplname . '.html';
+		
+		if (! file_exists ( $parfile ) || filemtime ( $parfile ) < filemtime ( $tplfile )) {
+			// 引入模版解析类
+			require_once ROOT_PATH . '/include/Parser.class.php';
+			
+			// 编译文件
+			$parser = new Praser ( $tplfile );
+			$parser->compile ( $parfile );
+		}
+		
+		include $parfile;
+		
+		if (FRONT_CACHE) {
+			// 获取缓冲区中的数据，并且创建缓存文件
+			file_put_contents ( $cachefile, ob_get_contents () );
+			// 清楚缓冲区
+			ob_end_clean ();
+			// 载入缓存的静态页面
+			include $cachefile;
+		}
+	}
+	
+	/**
+	 * 跳转到缓存文件，不执行PHP了，不连接数据了
+	 * @author 吴金华
+	 * @version 1.0
+	 * @since 2015-8-21
+	 * @param unknown $tplname
+	 */
+	public function cache($tplname) {
 		$tplfile = TPL_DIR . $tplname;
 		// 判断模版是否存在
 		if (! file_exists ( $tplfile )) {
@@ -58,34 +106,14 @@ class Templates {
 		$cachefile = CACHE . md5 ( $tplname ) . $tplname . '.html';
 		
 		// 其余缓存后如果已经编译不在重新编译，直接载入缓存即可
-		if (IS_CACHE) {
+		if (FRONT_CACHE) {
 			if (file_exists ( $cachefile ) && file_exists ( $parfile )) {
 				// 判断编译文件没有修改过
 				if (filemtime ( $parfile ) >= filemtime ( $tplfile ) && filemtime ( $cachefile ) >= filemtime ( $parfile )) {
 					include $cachefile;
-					return;
+					exit();
 				}
 			}
-		}
-		
-		if (! file_exists ( $parfile ) || filemtime ( $parfile ) < filemtime ( $tplfile )) {
-			// 引入模版解析类
-			require_once ROOT_PATH . '/include/Parser.class.php';
-			
-			// 编译文件
-			$parser = new Praser ( $tplfile );
-			$parser->compile ( $parfile );
-		}
-		
-		include $parfile;
-		
-		if (IS_CACHE) {
-			// 获取缓冲区中的数据，并且创建缓存文件
-			file_put_contents ( $cachefile, ob_get_contents () );
-			// 清楚缓冲区
-			ob_end_clean ();
-			// 载入缓存的静态页面
-			include $cachefile;
 		}
 	}
 	

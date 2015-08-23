@@ -59,6 +59,20 @@ class Tool {
 	}
 	
 	/**
+	 * 将当前文件转换成.tpl文件名
+	 * 
+	 * @author 吴金华
+	 * @version 1.0
+	 * @since 2015-8-23
+	 * @return string
+	 */
+	static public function tplName() {
+		$str = explode ( '/', $_SERVER ["SCRIPT_NAME"] );
+		$str = explode ( '.', $str [count ( $str ) - 1] );
+		return $str [0] . '.tpl';
+	}
+	
+	/**
 	 * 显示html过滤
 	 *
 	 * @author 吴金华
@@ -88,7 +102,7 @@ class Tool {
 	
 	/**
 	 * 将html字符串转换成html标签
-	 * 
+	 *
 	 * @author 吴金华
 	 * @version 1.0
 	 * @since 2015-8-18

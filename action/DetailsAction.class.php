@@ -29,15 +29,23 @@ class DetailsAction extends Action {
 		if (isset($_GET['id'])) {
 			parent::__construct($this->tmp, new ContentModel());
 			$this->model->id = $_GET['id'];
+			if (!$this->model->updateCount()) {
+				Tool::alertBack('次文档不存在');
+			}
 			$content = $this->model->load();
+			$this->tmp->assign('id',$content->id);
 			$this->tmp->assign('titlec',$content->title);
-			$this->tmp->assign('count',$content->count);
 			$this->tmp->assign('pubdate',$content->pubdate);
 			$this->tmp->assign('source',$content->source);
 			$this->tmp->assign('author',$content->author);
 			$this->tmp->assign('info',$content->info);
 			$this->tmp->assign('content',Tool::unHtml($content->content));
 			$this->getNav($content->nav);
+			if (FRONT_CACHE) {
+				$this->tmp->assign('count','<script type="text/javascript">getContentCount();</script>');
+			} else {
+				$this->tmp->assign('count',$content->count);
+			}
 		} else {
 			Tool::alertBack('非法操作');
 		}

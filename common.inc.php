@@ -1,8 +1,9 @@
 <?php
-// 是否开启缓冲区
-define ( 'IS_CACHE', false );
-IS_CACHE ? ob_start () : null;
 // 模版句柄
 global $tmp;
+if (FRONT_CACHE) {
+	ob_start();
+	$tmp->cache(Tool::tplName());
+}
 $nav = new NavAction($tmp);
 $nav->displayFront();

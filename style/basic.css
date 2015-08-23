@@ -8,7 +8,8 @@ body{width:960px;margin:0 auto;font-size:12px;font-family:"微软雅黑";color:#
 
 /*top start*/
 .top{height:26px;background:url('../images/top_bg.png');margin:0 0 10px 0;text-align:right;line-height:26px;}
-.top a{block:inline-block;padding:5px 10px 0 0;}
+.top a.adv{block:inline-block;padding:5px 10px 0 0;color:red;}
+.top a.usera{block:inline-block;padding:5px 0 0 0;color:blue;}
 /*top end*/
 
 /*header start*/

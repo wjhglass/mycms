@@ -1,11 +1,12 @@
 @CHARSET "UTF-8";
 /*user start*/
 .user{width:268px;height:398px;float:right;margin:0 0 10px 0;border:1px solid #ccc;}
-.user form{position:relative;}
+.user form{}
 .user form label{display:block;padding:8px 0 5px 12px;}
 .user form label input.text{width:180px;height:20px;border:1px solid #666;background:#eee;}
 .user form label input.code{width:100px;}
-.user form img{position:absolute;top:82px;left:170px;}
+.user form label.yzm{position:relative;top:-14px;}
+.user form img{width:78px;height:30px;position:relative;top:10px;}
 .user form p{text-align:center;padding:8px 0;}
 .user form p input.submit{width:45px;height:20px;}
 .user form p a{color:green;text-decoration:none;}

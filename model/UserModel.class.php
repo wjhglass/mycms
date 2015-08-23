@@ -42,6 +42,7 @@ class UserModel extends Model {
 				email,
 				question,
 				answer,
+				face,
 				regdate
 			)
 			VALUES
@@ -52,8 +53,66 @@ class UserModel extends Model {
 				'$this->email',
 				'$this->question',
 				'$this->answer',
+				'$this->face',
 				 NOW()
 			)";
 		return parent::aud ( $sql );
+	}
+	
+	/**
+	 * 检测用户名重复
+	 * @author 吴金华
+	 * @version 1.0
+	 * @since 2015-8-23
+	 * @return string
+	 */
+	public function checkUsername() {
+		$sql = "SELECT
+					id
+				FROM
+					mycms_user
+				WHERE
+					username='$this->username'
+				LIMIT 1";
+		return parent::one ( $sql );
+	}
+	
+	/**
+	 * 检测邮件重复
+	 * @author 吴金华
+	 * @version 1.0
+	 * @since 2015-8-23
+	 * @return string
+	 */
+	public function checkEmail() {
+		$sql = "SELECT
+					id
+				FROM
+					mycms_user
+				WHERE
+					email='$this->email'
+				LIMIT 1";
+		return parent::one ( $sql );
+	}
+	
+	/**
+	 * 验证用户
+	 *
+	 * @author 吴金华
+	 * @version 1.0
+	 * @since 2015-8-23
+	 */
+	public function validate() {
+		$sql = "
+			SELECT 
+				username,
+				password
+			FROM 
+				mycms_user 
+			WHERE 
+				username='$this->username'
+				AND password='$this->password'
+			LIMIT 1";
+		return parent::one ( $sql );
 	}
 }

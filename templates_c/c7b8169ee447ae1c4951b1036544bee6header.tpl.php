@@ -1,7 +1,9 @@
+<script type="text/javascript" src="config/static.php?type=header"></script>
 <!--top start-->
 <div class="top">
-	<a href="javascript:;">这里可以放置文字广告1</a>
-	<a href="javascript:;">这里可以放置文字广告2</a>
+	<?php echo $this->vars['header'];?>
+	<a href="javascript:;" class="adv">这里可以放置文字广告1</a>
+	<a href="javascript:;" class="adv">这里可以放置文字广告2</a>
 </div>
 <!--top end-->
 

@@ -13,13 +13,12 @@
 	<!--user start-->
 	<div class="user">
 		<h2>会员信息</h2>
-		<form>
+		<form method="post" action="register.php?action=login" name="login">
 			<label>用户名：<input type="text" name="username" class="text" /></label>
 			<label>密　码：<input type="password" name="password" class="text" /></label>
-			<label>验证码：<input type="text" name="code" class="text code" /></label>
-			<img width="68" height="24" alt="验证码" src="images/vdimgck.png" />
+			<label class="yzm">验证码：<input type="text" name="code" class="text code" /> <img src="config/code.php" width="130" height="50" alt="验证码" onclick="javascript:this.src = 'config/code.php?tm=' + Math.random();" class="code" /></label>
 			<p>
-				<input type="submit" name="send" value="登录" class="submit" />
+				<input type="submit" name="send" value="登录" class="submit" onclick="return checkLogin();" />
 				<a href="register.php?action=reg">注册会员</a>
 				<a href="javascript:;">忘记密码？</a>
 			</p>
@@ -234,5 +233,6 @@
 	
 	<!--导入尾部文件-->
 	{include file='footer.tpl'}
+	<script type="text/javascript" src="js/reg.js"></script>
 </body>
 </html>

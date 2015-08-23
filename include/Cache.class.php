@@ -34,6 +34,9 @@ class Cache {
 			case 'list':
 				$this->listc();
 				break;
+			case 'header' :
+				$this->header();
+				break;
 		}
 	}
 	
@@ -87,5 +90,29 @@ class Cache {
 				document.write('$count');
 			}
 		";
+	}
+	
+	/**
+	 * header
+	 * @author 吴金华
+	 * @version 1.0
+	 * @since 2015-8-23
+	 */
+	public function header() {
+		$cookie = new Cookie('username');
+		if ($cookie->getCookie()) {
+			echo "
+			function getHeader() {
+				document.write('{$cookie->getCookie()}，您好！ <a href=\"register.php?action=logout\">退出</a> ');
+			}
+			";
+		} else {
+			echo "
+				function getHeader() {
+					document.write('<a href=\"register.php?action=reg\" class=\"usera\">注册</a> <a href=\"register.php?action=login\" class=\"usera\">登录</a>');
+				}
+				";
+		}
+	
 	}
 }

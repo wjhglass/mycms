@@ -13,6 +13,7 @@ class UserModel extends Model {
 	private $answer; // 密码问题的答案
 	private $state; // 状态
 	private $regdate; // 注册时间
+	private $logintime; // 登录时间
 	private $limit; // limit语句
 	public function __set($name, $val) {
 		if (is_array ( $val )) {
@@ -96,6 +97,43 @@ class UserModel extends Model {
 	}
 	
 	/**
+	 * 注册和登录时更新最近的登录时间戳
+	 * @author 吴金华
+	 * @version 1.0
+	 * @since 2015-8-30
+	 */
+	public function updateLogintime() {
+		$_sql = "UPDATE mycms_user
+				SET
+					logintime='$this->logintime'
+				WHERE
+					id='$this->id'
+				LIMIT 1";
+		return parent::aud($_sql);
+	}
+	
+	/**
+	 * 获取6条最近登录的会员
+	 * @author 吴金华
+	 * @version 1.0
+	 * @since 2015-8-30
+	 * @return string
+	 */
+	public function lastLoginUser() {
+		$sql = "
+				SELECT
+					username,
+					face
+				FROM
+					mycms_user
+				ORDER BY
+					logintime DESC
+				LIMIT
+					0,6";
+		return parent::all($sql);
+	}
+	
+	/**
 	 * 验证用户
 	 *
 	 * @author 吴金华
@@ -105,6 +143,7 @@ class UserModel extends Model {
 	public function validate() {
 		$sql = "
 			SELECT 
+				id,
 				username,
 				password,
 				face

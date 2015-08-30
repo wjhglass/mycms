@@ -40,30 +40,14 @@
 			{/if}
 		{/if}
 		<h3>最近登录会员<span>───────────────────</span></h3>
+		{if $loginUser}
+		{foreach $loginUser(key,value)}
 		<dl>
-			<dt><img width="72" height="72" alt="头像" src="images/01.gif" /></dt>
-			<dd>金毛狮王</dd>
+			<dt><img src="images/{@value->face}" alt="{@value->username}" width="72" height="72" /></dt>
+			<dd>{@value->username}</dd>
 		</dl>
-		<dl>
-			<dt><img width="72" height="72" alt="头像" src="images/02.gif" /></dt>
-			<dd>金轮法王</dd>
-		</dl>
-		<dl>
-			<dt><img width="72" height="72" alt="头像" src="images/03.gif" /></dt>
-			<dd>小诸葛</dd>
-		</dl>
-		<dl>
-			<dt><img width="72" height="72" alt="头像" src="images/04.gif" /></dt>
-			<dd>病尉迟</dd>
-		</dl>
-		<dl>
-			<dt><img width="72" height="72" alt="头像" src="images/05.gif" /></dt>
-			<dd>小李广</dd>
-		</dl>
-		<dl>
-			<dt><img width="72" height="72" alt="头像" src="images/07.gif" /></dt>
-			<dd>美髯公</dd>
-		</dl>
+		{/foreach}
+		{/if}
 	</div>
 	<!--user end-->
 	

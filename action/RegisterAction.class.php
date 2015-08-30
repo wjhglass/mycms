@@ -131,6 +131,11 @@ class RegisterAction extends Action {
 				$cookie->setCookie();
 				$cookie = new Cookie('face',$user->face,$_POST['time']);
 				$cookie->setCookie();
+				$this->model->id = $user->id;
+				$this->model->logintime = time();
+				echo $this->model->id.'<br />';
+				echo $this->model->logintime.'<br />';
+				$this->model->updateLogintime();
 				Tool::alertLocation(null, './');
 			} else {
 				Tool::alertBack('用户名或密码错误！');

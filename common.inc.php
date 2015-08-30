@@ -1,7 +1,7 @@
 <?php
 // 模版句柄
 global $tmp;
-define('IS_CACHE', true);
+define('IS_CACHE', false);
 global $cache;
 $isCache = !$cache->isNoCachePage();
 if (IS_CACHE && $isCache) {
